@@ -1,13 +1,13 @@
-"use client"; 
-import type { Metadata } from "next";
-import { useState } from 'react';
-import Sidebar from "@/components/Menubar/SideBar/Sidebar";
+"use client";
 
-export const metadata: Metadata = {
-  title: "K-Prep | Notes",
-  description: "Notes and resources for the KIITIANS, by the KIITIANS.",
-};
-const Layout = ({ children }: { children: React.ReactNode }) => {
+import React, { useState } from "react";
+import { Inter } from "next/font/google";
+import Navbar from "@/components/Menubar/Navbar/Navbar2";
+import Sidebar from "@/components/Menubar/SideBar/Sidebar"; // Adjust the import path as necessary
+
+const inter = Inter({ subsets: ["latin"] });
+
+const NotesLayout = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -15,13 +15,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className="flex">
+    <div className={inter.className}>
+      <Navbar />
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
-      <div className={`flex-grow transition-all duration-300 ${isOpen ? 'ml-48' : 'ml-16'}`}>
+      <div className={`container mx-auto p-4 transition-all duration-300 ${isOpen ? "ml-64" : ""}`}>
         {children}
       </div>
     </div>
   );
 };
 
-export default Layout;
+export default NotesLayout;
