@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Menubar/Navbar/Navbar2";
-import Sidebar from "@/components/Menubar/SideBar/Sidebar"; // Adjust the import path as necessary
+import Sidebar from "@/components/Menubar/SideBar/Sidebar"; 
 
 const inter = Inter({ subsets: ["latin"] });
 
