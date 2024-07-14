@@ -1,4 +1,3 @@
-// src/components/Menubar/SideBar/Sidebar.tsx
 import { AiFillHome,  } from 'react-icons/ai';
 import { FaUserGraduate, FaChalkboardTeacher, FaBookOpen, FaLaptopCode, FaCalendarAlt } from 'react-icons/fa';
 
