@@ -6,7 +6,7 @@ import Navbar from "@/components/Menubar/Navbar/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "K-Prep | Pyqs",
+  title: "K-Prep",
   description: "Notes and resources for the KIITIANS, by the KIITIANS.",
 };
 
