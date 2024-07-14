@@ -1,13 +1,10 @@
-"use client";
+// src/app/notes/layout.tsx
+"use client"; // Add this directive at the top
 
-import React, { useState } from "react";
-import { Inter } from "next/font/google";
-import Navbar from "@/components/Menubar/Navbar/Navbar2";
-import Sidebar from "@/components/Menubar/SideBar/Sidebar"; // Adjust the import path as necessary
+import { useState } from 'react';
+import Sidebar from "@/components/Menubar/SideBar/Sidebar";
 
-const inter = Inter({ subsets: ["latin"] });
-
-const NotesLayout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -15,15 +12,13 @@ const NotesLayout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className={inter.className}>
-      <Navbar />
+    <div className="flex">
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
-      <div className={`container mx-auto p-4 transition-all duration-300 ${isOpen ? "ml-64" : ""}`}>
-        {/* Main Content */}
+      <div className={`flex-grow transition-all duration-300 ${isOpen ? 'ml-48' : 'ml-16'}`}>
         {children}
       </div>
     </div>
   );
 };
 
-export default NotesLayout;
+export default Layout;
