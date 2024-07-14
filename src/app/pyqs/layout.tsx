@@ -19,7 +19,6 @@ const NotesLayout = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div className={`container mx-auto p-4 transition-all duration-300 ${isOpen ? "ml-64" : ""}`}>
-        {/* Main Content */}
         {children}
       </div>
     </div>
