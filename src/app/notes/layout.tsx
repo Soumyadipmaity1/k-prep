@@ -1,10 +1,13 @@
-// src/app/notes/layout.tsx
-"use client"; // Add this directive at the top
-
+"use client"; 
+import type { Metadata } from "next";
 import { useState } from 'react';
 import Sidebar from "@/components/Menubar/SideBar/Sidebar";
 
-const Layout = ({ children }) => {
+export const metadata: Metadata = {
+  title: "K-Prep | Notes",
+  description: "Notes and resources for the KIITIANS, by the KIITIANS.",
+};
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
