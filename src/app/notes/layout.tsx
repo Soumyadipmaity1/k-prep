@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/Menubar/Navbar/Navbar2";
 import Sidebar from "@/components/Menubar/SideBar/Sidebar"; 
 
- const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 const NotesLayout = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +24,5 @@ const NotesLayout = ({ children }: { children: React.ReactNode }) => {
     </div>
   );
 };
-    
 
 export default NotesLayout;
