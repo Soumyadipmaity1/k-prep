@@ -2,7 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Denk+One&display=swap');
 
+
+body {
+  @apply font-denk;
+}
   .nav-link {
-    @apply relative font-semibold lg:mx-2 mx-1 text-[#171718] cursor-pointer xl:text-[20px] md:text-[17px] sm:text-[14px] w-fit lg:block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#cd45ff] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center hidden;
+    @apply relative font-semibold lg:mx-2 mx-1  cursor-pointer xl:text-[26px] md:text-[21px] sm:text-[18px] w-fit lg:block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#fff] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center hidden;
   }
+
+  .body-shadow{
+    box-shadow: inset 0px 0px 14px 0px #ee85bb;
+    /* border-radius: 14px; */
+    /* box-shadow:inset 0px 0px 10px 0px #ee85bb; */
+border: #ee85bb solid 3px;
+
+  }
+
+  .bg-feature{
+    background-image: url("../../public/featurecard.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+  }
+  .bg-team{
+    background: radial-gradient(96.71% 477.48% at 3.29% 11.18%, #C476F0 0%, #C476F0 49.17%, #EE85BB 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    /* border-radius: 30px;/ */
+    
+  }
+  .bg-testimonial{
+    background: linear-gradient(90deg, rgba(238, 133, 187, 0.84) 0%, rgba(196, 118, 240, 0.84) 100%);
+box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
+
+border-radius: 90px;  
+
+  }
+  @layer utilities {
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 5px;
+    }
+  
+    ::-webkit-scrollbar-thumb {
+      background-color: #790079; 
+      border-radius: 10px; 
+    }
+  
+    ::-webkit-scrollbar-track {
+      background-color: #f4f4f400; 
+    }
+  }
+
+.modal-text{
+  
+  background: linear-gradient(92.25deg, #EE85BB 5.81%, #843AB1 51.36%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  
+}

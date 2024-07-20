@@ -1,8 +1,15 @@
+import React from 'react';
+import FeatureSection from "@/components/landingpage/Feature/FeatureSection";
+import Team from "@/components/landingpage/Team/team";
+import Testimonials from "@/components/landingpage/Testimonial/testinomial";
+import { denkOne } from './font';
 
 export default function Home() {
   return (
-    <div className="h-screen flex justify-center items-center text-5xl">
-      <h1>Landing page </h1>
+    <div className={denkOne.className}>
+      <FeatureSection />
+      <Testimonials />
+      <Team />
     </div>
   );
 }

@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Menubar/Navbar/Navbar";
+// "use client";
 
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from 'next';
+import { Denk_One } from 'next/font/google';
+import './globals.css';
+import Navbar from '@/components/Menubar/Navbar/Navbar';
+import Footer from '@/components/Footer/footer';
+
+const denkOne = Denk_One({ subsets: ['latin'], weight: '400' });
 
 export const metadata: Metadata = {
-  title: "K-Prep",
-  description: "Notes and resources for the KIITIANS, by the KIITIANS.",
+  title: 'K-Prep',
+  description: 'Notes and resources for the KIITIANS, by the KIITIANS.',
 };
 
 export default function RootLayout({
@@ -16,11 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={denkOne.className}>
+      <body className="bg-white p-5 body-shadow m-5 rounded-xl">
         <Navbar />
         {children}
-        </body>
+        <Footer />
+      </body>
     </html>
   );
 }
