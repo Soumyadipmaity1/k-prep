@@ -1,5 +1,7 @@
-import { AiFillHome,  } from 'react-icons/ai';
-import { FaUserGraduate, FaChalkboardTeacher, FaBookOpen, FaLaptopCode, FaCalendarAlt } from 'react-icons/fa';
+"use server"
+
+import { AiFillHome } from 'react-icons/ai';
+import { FaUserGraduate, FaChalkboardTeacher, FaBookOpen, FaLaptopCode } from 'react-icons/fa';
 
 const Sidebar = ({ isOpen, toggleSidebar }: { isOpen: boolean, toggleSidebar: () => void }) => {
   return (
