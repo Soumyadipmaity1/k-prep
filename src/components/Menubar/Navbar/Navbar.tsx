@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaSearch } from "react-icons/fa";
 import ModalMenu from "@/components/Modal/modal";
 import { denkOne } from "@/app/font";
-
+import Image from "next/image";
 type NavLink = {
   label: string;
   href: string;
@@ -20,16 +20,22 @@ const navLinks: NavLink[] = [
 
 const menuItems: Record<string, { label: string; route: string }[]> = {
   "/notes": [
+    { label: "CSE", route: "/cse-notes" },
+    { label: "CSCE", route: "/csce-notes" },
+    { label: "IT", route: "/it-notes" },
+    { label: "CSSE", route: "/csse-notes" }
+  ],
+  "/pyqs": [
     { label: "CSE", route: "/cse" },
     { label: "CSCE", route: "/csce" },
     { label: "IT", route: "/it" },
     { label: "CSSE", route: "/csse" }
   ],
-  "/pyqs": [
-    // Add items for pyqs
-  ],
   "/labs": [
-    // Add items for labs
+    { label: "CSE", route: "/cse" },
+    { label: "CSCE", route: "/csce" },
+    { label: "IT", route: "/it" },
+    { label: "CSSE", route: "/csse" }
   ]
 };
 
@@ -40,7 +46,16 @@ const Nav = () => {
   const [currentNav, setCurrentNav] = useState<string>("");
 
   const getLinkClass = (href: string) => {
-    return pathname === href ? "text-green-500 underline" : "text-white";
+    if (href === "/notes" && pathname.includes("notes")) {
+      return "border-b-4 border-white ";
+    }
+    if (href === "/pyqs" && pathname.includes("pyqs")) {
+      return "border-b-4 border-white";
+    }
+    if (href === "/labs" && pathname.includes("labs")) {
+      return "border-b-4 border-white";
+    }
+    return "text-white";
   };
 
   const handleNavClick = (href: string) => {
@@ -49,12 +64,24 @@ const Nav = () => {
     setIsModalOpen(true);
   };
 
+  useEffect(() => {
+    const matchedNavLink = navLinks.find(nav => pathname.startsWith(nav.href));
+    if (matchedNavLink) {
+      setCurrentNav(matchedNavLink.href);
+      setModalItems(menuItems[matchedNavLink.href] || []);
+      setIsModalOpen(true);
+    } else {
+      setCurrentNav("");
+      setIsModalOpen(false);
+    }
+  }, [pathname]);
+
   return (
     <div className={`sticky z-50 flex gap-5 ${denkOne.className}`}>
       <div className="w-1/12 rounded-xl bg-gradient-to-r from-[#6b03a8] to-[#843ab1]">
         <Link href="/" passHref>
           <div className="w-16 h-16">
-            <img src="/k-prep2.png" alt="logo" className="h-16 p-1.5 w-16 rounded-xl mx-4 bg-transparent" />
+            <Image src="/k-prep2.png" width={144} height={144} alt="logo" className="h-16 p-1.5 w-16 rounded-xl mx-4 bg-transparent" />
           </div>
         </Link>
       </div>
