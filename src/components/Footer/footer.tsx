@@ -1,8 +1,10 @@
+import { denkOne } from '@/app/font';
 import React from 'react';
 import { FaPhone, FaEnvelope, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
   return (
+    <div className={denkOne.className}>
     <footer className="bg-purple-600 rounded-xl mt-8 text-white p-6 px-16">
       <div className="container mx-auto flex justify-between">
         <div>
@@ -37,6 +39,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </footer>
+    </div>
   );
 }
 
