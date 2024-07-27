@@ -36,7 +36,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className={denkOne.className}>
-      <div className="flex max-h-screen mt-6 rounded-xl">
+      <div className="flex h-screen mt-6 rounded-xl">
         <aside
           className={`bg-sidebar text-white rounded-xl transition-all duration-300 ${
             isOpen ? 'w-56' : 'w-20'
@@ -86,7 +86,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
               </div>
             </nav>
           </div>
-          <div className="cursor-pointer flex hover:border-l-4 pl-6 border-white items-center justify-between mt-72">
+          <div className="cursor-pointer flex hover:border-l-4 pl-6 border-white items-center justify-between mt-60">
             <Link href="https://google.com" target="_blank">
               <button title='feedback' className="focus:outline-none flex space-x-2">
                 <FaRegComment size={32} />
