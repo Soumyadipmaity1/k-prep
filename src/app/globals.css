@@ -24,8 +24,8 @@ border: #ee85bb solid 3px;
     background-image: url("../../public/featurecard.svg");
     background-size: cover;
     background-repeat: no-repeat;
-
   }
+
   .bg-team{
     background: radial-gradient(96.71% 477.48% at 3.29% 11.18%, #C476F0 0%, #C476F0 49.17%, #EE85BB 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
@@ -69,4 +69,31 @@ border-radius: 90px;
 .bg-sidebar{
   background: radial-gradient(50% 50% at 50% 50%, #D87ED6 0%, #843AB1 100%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.bg-recommended{
+  background: linear-gradient(180deg, rgba(132, 58, 177, 0.3) 0%, rgba(238, 133, 187, 0.3) 100%); 
+}
+
+.demo-slider {
+  @apply relative w-full h-full;
+}
+
+.swiper-material-wrapper {
+  @apply flex justify-center items-center h-full;
+}
+
+.swiper-material-content {
+  @apply relative text-center;
+}
+
+.demo-material-image {
+  @apply transition-transform duration-300 ease-in-out;
+}
+
+.demo-material-image:hover {
+  transform: scale(1.25);
+}
+
+.demo-material-label {
+  @apply absolute bottom-0 left-0 right-0 bg-opacity-50 text-white;
 }
