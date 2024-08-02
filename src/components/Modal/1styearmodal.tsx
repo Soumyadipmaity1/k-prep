@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
+import { FaTimes } from 'react-icons/fa';
+import { denkOne } from '@/app/font';
 
 interface ModalProps {
   isOpen: boolean;
@@ -20,32 +22,33 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, title, yearPath }) => {
   };
 
   return createPortal(
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg p-8 w-96 text-center">
-        <h2 className="text-3xl mb-6">{title}</h2>
-        <p className="text-xl mb-6">Please select your scheme.</p>
+    <div className={denkOne.className}>
+     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-[#f8e9f4] rounded-lg p-8 text-center relative">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition"
+        >
+          <FaTimes size={24} />
+        </button>
+        <p className=" mb-8 text-schemeB p-5 text-3xl">Please select your scheme.</p>
         <div className="flex justify-around">
           <button
             onClick={() => navigateToScheme('schemeA')}
-            className="bg-gradient-to-br from-purple-500 to-pink-500 text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-2xl transition"
+            className="bg-schemeA text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-2xl transition"
           >
             Scheme A
           </button>
-          <button
+<div className='bg-[#fbd6ff] rounded-lg border-2 border-[#843ab1] '>          <button
             onClick={() => navigateToScheme('schemeB')}
-            className="border-4 border-purple-500 text-purple-500 px-8 py-4 rounded-lg hover:bg-purple-500 hover:text-white transition"
+            className=" text-schemeB px-8 py-4   transition"
           >
             Scheme B
-          </button>
+          </button></div>
         </div>
-        <button
-          onClick={onClose}
-          className="mt-6 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
-        >
-          Close
-        </button>
       </div>
-    </div>,
+    </div>
+   </div>,
     document.body
   );
 };
