@@ -14,7 +14,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, imageSrc, description, pdfUrl }) => {
   const handleOpenPdf = () => {
-    window.open(pdfUrl, '_self');
+    window.open(pdfUrl, ' _target ');
   };
 
   return (
