@@ -97,3 +97,15 @@ border-radius: 90px;
 .demo-material-label {
   @apply absolute bottom-0 left-0 right-0 bg-opacity-50 text-white;
 }
+
+.bg-schemeA{
+  background: radial-gradient(83.02% 83.02% at 50% 50%, #EE85BB 0%, #843AB1 100%) 
+}
+
+.text-schemeB{
+background: linear-gradient(91.46deg, #EE85BB 1.24%, #843AB1 51.94%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+
+}
