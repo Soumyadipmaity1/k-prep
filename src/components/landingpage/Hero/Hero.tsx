@@ -36,7 +36,7 @@ const Hero: FC = () => {
           </div>
           <div>
             <h1 className='font-sans text-xl text-purple-600 font-bold text-center'>200+</h1>
-            <h1 className=" font-mono text-medium ">Previous Year Q's</h1>
+            <h1 className=" font-mono text-medium ">Previous Year Q&rsquo;s</h1>
           </div>
         </div>
         <div className="absolute bottom-28 cursor-pointer hover:bg-white shadow-lg px-5 right-4 flex-col flex items-center space-x-2 bg-[#e4e1e1bd] p-2 rounded-lg border-2 border-purple-400 ">
