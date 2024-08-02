@@ -3,8 +3,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
-
-// Card Component
+import Image from 'next/image';
 interface CardProps {
   title: string;
   imageSrc: string;
@@ -20,7 +19,7 @@ const Card: React.FC<CardProps> = ({ title, imageSrc, description, pdfUrl }) => 
   return (
     <div className="bg-recommended rounded-xl shadow-lg flex-row justify-center p-4 w-60 mx-2" >
       <div className="h-48 w-full bg-gray-200 rounded-md mb-4">
-        <img src={imageSrc} alt={title} className="h-full w-full object-cover rounded-md" />
+        <Image src={imageSrc} alt={title} className="h-full w-full object-cover rounded-md" />
       </div>
       <h2 className="text-xl font-bold mb-2">{title}</h2>
       <p className="text-gray-700 mb-4">{description}</p>
