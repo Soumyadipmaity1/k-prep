@@ -1,5 +1,4 @@
 import Subject1Notes from "@/components/Resource1stYear/ResourceSchemeA/Subject1Notes";
-import SubjectButton from "@/components/Subjects/SchemeASub";
 
 const Subject1 = () => {
     return (
