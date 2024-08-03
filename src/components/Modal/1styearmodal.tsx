@@ -26,6 +26,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, title, yearPath }) => {
      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-[#f8e9f4] rounded-lg p-8 text-center relative">
         <button
+        title = "Close"
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition"
         >
