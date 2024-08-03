@@ -1,4 +1,4 @@
-import SubjectButton from "@/components/Subjects/SchemeASub";
+import SubjectButton from "@/components/Subjects/2nd-year/4thSemSubject";
 
 const SchemeA = () => {
     return (
