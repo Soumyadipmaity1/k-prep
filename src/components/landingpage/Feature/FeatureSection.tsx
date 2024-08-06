@@ -44,7 +44,7 @@ description:'Get straight to the point with concise and accurate notes, crafted 
 const   FeatureSection: React.FC = () => {
   return (
     <div className="pb-12 pt-8 my-10  rounded-xl px-10 bg-gradient-to-r from-[#C476F0] to-[#EE85BB]">
-      <h2 className="text-5xl font-bold text-center pb-16  text-black">Features</h2>
+      <h2 className="sm:text-5xl text-4xl font-bold text-center sm:pb-16 pb-10  text-black">Features</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-6">
         {contactOptions.map((option, index) => (
           <ContactOption key={index} {...option} /> 
