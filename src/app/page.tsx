@@ -10,11 +10,13 @@ const MaterialSlider = dynamic(() => import('../components/Slider/SliderComponen
 export default function Home() {
   return (
     <div className={denkOne.className}>
-      <Hero/>
+<div className=''>
+<Hero/>
       {/* <MaterialSlider/> */}
       <FeatureSection />
       <Testimonials />
       <Team />
+</div>
     </div>
   );
 }
