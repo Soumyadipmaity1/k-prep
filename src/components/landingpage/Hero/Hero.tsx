@@ -10,8 +10,8 @@ const Hero: FC = () => {
         <h1 className="sm:text-7xl text-5xl font-bold mb-4">READ, LEARN,</h1>
         <h1 className="sm:text-7xl text-5xl font-bold mb-4"> ACE!</h1>
 
-        <p className="text-gray-600 sm:mb-6 sm:px-0 px-4  sm:mt-8 mt-5 font-sans">
-          Lorem ipsum dolor sit amet. Non voluptatum explicabo et vo sunt non repellat nesciunt? Id sunt sapiente hic dolores dolo vitae ratione. Est expedita animi ea culpa dolores est quasi.
+        <p className="text-gray-600 sm:mb-6 sm:px-0 px-4 text-justify   sm:mt-8 mt-5 font-sans">
+          Lorem ipsum dolor sit amet. Non voluptatum explicabo et vo sunt non repellat nesciunt? Id sunt sapiente hic dolores dolo vitae ratione. Est expedita animi ea culpa.
         </p>
         <button className="px-8  py-3 mt-8 bg-purple-500 text-white font-semibold rounded-md hover:bg-purple-700">
           Explore More
