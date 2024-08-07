@@ -26,16 +26,16 @@ const menuItems: Record<string, { label: string; route: string }[]> = {
     { label: "CSSE", route: "/csse-notes" }
   ],
   "/pyqs": [
-    { label: "CSE", route: "/cse" },
-    { label: "CSCE", route: "/csce" },
-    { label: "IT", route: "/it" },
-    { label: "CSSE", route: "/csse" }
+    { label: "CSE", route: "/cse-pyqs" },
+    { label: "CSCE", route: "/cse-pyqs" },
+    { label: "IT", route: "/cse-pyqs" },
+    { label: "CSSE", route: "/cse-pyqs" }
   ],
   "/labs": [
-    { label: "CSE", route: "/cse" },
-    { label: "CSCE", route: "/csce" },
-    { label: "IT", route: "/it" },
-    { label: "CSSE", route: "/csse" }
+    { label: "CSE", route: "/cse-labs" },
+    { label: "CSCE", route: "/cse-labs" },
+    { label: "IT", route: "/cse-labs" },
+    { label: "CSSE", route: "/cse-labs" }
   ]
 };
 
