@@ -35,7 +35,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
   };
 
   const getNavItemClass = (path: string) => {
-    return pathname.startsWith(path) ? 'border-l-2 border-[#d998ff]' : 'hover:border-l-2 border-[#d998ff]';
+    return pathname.startsWith(path) ? 'border-l-2 sm:border-l-4 border-[#d998ff]' : 'hover:border-l-2 sm:hover:border-l-4 border-[#d998ff]';
   };
 
   return (
@@ -107,7 +107,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
 
     {/* For mobile device  */}
     <div className={denkOne.className}>
-      <div className="flex justify-between  h-screen mt-6 rounded-xl">
+      <div className="flex justify-between sm:hidden   h-screen mt-6 rounded-xl">
         <aside className='bg-sidebar text-white rounded-xl transition-all duration-300 px-2'>
           <div className="flex flex-col justify-center">
             <div>
@@ -116,7 +116,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
                   <FaBars size={16} />
                 </button>
               </div> */}
-              <nav className="mt-10 flex-col justify-center">
+              <nav className="mt-8 flex-col justify-center">
                 <div
                   className={`flex cursor-pointer my-4 py-0.5 items-center ${getNavItemClass('/cse-notes/1st-year')}`}
                   onClick={() => openModal(<FirstYearModal isOpen={true} onClose={closeModal} title="First Year" yearPath="/cse-notes/1st-year" />)}
