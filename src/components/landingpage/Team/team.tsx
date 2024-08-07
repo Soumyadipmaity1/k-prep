@@ -7,7 +7,7 @@ const Team: React.FC = () => {
     <div className=' bg-gradient-to-r rounded-xl bg-team from-[#C476F0] to-[#EE85BB] py-10 sm:p-10'>
       <div className="text-center">
         <h1 className="text-5xl font-bold tracking-[0.5px] text-[#231D1F]">Our Team</h1>
-        <p className="p-5 pb-10  sm:px-20">
+        <p className="p-5 pb-10 text-justify text-[#1d1d1d]  sm:px-20">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates magni cupiditate eaque soluta excepturi
           corporis vel voluptate modi tempora perferendis. Consequatur libero a sapiente ullam, repudiandae eum et
           similique nulla!
