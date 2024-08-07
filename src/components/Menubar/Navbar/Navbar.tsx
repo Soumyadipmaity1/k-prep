@@ -47,13 +47,13 @@ const Nav = () => {
 
   const getLinkClass = (href: string) => {
     if (href === "/notes" && pathname.includes("notes")) {
-      return "border-b-4 border-white ";
+      return "sm:border-b-4 border-b-2  border-white ";
     }
     if (href === "/pyqs" && pathname.includes("pyqs")) {
-      return "border-b-4 border-white";
+      return "sm:border-b-4 border-b-2 border-white";
     }
     if (href === "/labs" && pathname.includes("labs")) {
-      return "border-b-4 border-white";
+      return "sm:border-b-4 border-b-2 border-white";
     }
     return "text-white";
   };
@@ -119,7 +119,7 @@ const Nav = () => {
 
     {/*  for mobileNAVBAR */}
 
-    <div className={`sticky z-50 flex  gap-5 ${denkOne.className}`}>
+    <div className={`sticky z-50 flex sm:hidden px-1 sm:gap-5 ${denkOne.className}`}>
   <nav className=" w-full  items-center rounded-xl px-8 py-2 bg-gradient-to-r from-[#843AB1] to-[#D57EBD]">
     <ul className="flex justify-between  text-white">
       {navLinks.map((link) => (
