@@ -20,15 +20,15 @@ const Subject1Notes: React.FC = () => {
   return (
     <div className="flex flex-wrap items-center justify-center py-2">
       {resources.map((resource, index) => (
-        <div key={index} className="max-w-sm p-6 m-4 bg-white rounded-xl shadow-md">
-            <div className="flex items-center justify-between mb-5">
+        <div key={index} className="sm:max-w-sm p-6 m-4 bg-white rounded-xl shadow-md">
+            <div className="flex items-center justify-between mb-3 sm:mb-5">
             <h2 className="text-xl font-bold text-purple-700">{resource.title}</h2>
           <div className="flex ">
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
                 xmlns="http://www.w3.org/2000/svg"
-                className={`w-6 h-6 ${i < resource.rating ? 'text-purple-500' : 'text-gray-300'}`}
+                className={`sm:w-6 sm:h-6 w-4 ${i < resource.rating ? 'text-purple-500' : 'text-gray-300'}`}
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
