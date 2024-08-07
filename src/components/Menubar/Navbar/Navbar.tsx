@@ -77,7 +77,8 @@ const Nav = () => {
   }, [pathname]);
 
   return (
-    <div className={`sticky z-50 flex gap-5 ${denkOne.className}`}>
+<div>
+<div className={`sticky z-50 sm:flex hidden  gap-5 ${denkOne.className}`}>
       <div className="w-1/12 rounded-xl bg-gradient-to-r from-[#6b03a8] to-[#843ab1]">
         <Link href="/" passHref>
           <div className="w-16 h-16">
@@ -115,6 +116,34 @@ const Nav = () => {
         items={modalItems}
       />
     </div>
+
+    {/*  for mobileNAVBAR */}
+
+    <div className={`sticky z-50 flex  gap-5 ${denkOne.className}`}>
+  <nav className=" w-full  items-center rounded-xl px-8 py-2 bg-gradient-to-r from-[#843AB1] to-[#D57EBD]">
+    <ul className="flex justify-between  text-white">
+      {navLinks.map((link) => (
+        <li key={link.href} className="my-2 sm:my-0">
+          <button
+            onClick={() => handleNavClick(link.href)}
+            className={`nav-link text-white text-xl font-bold ${getLinkClass(link.href)}`}
+          >
+            {link.label}
+          </button>
+        </li>
+      ))}
+    </ul>
+  </nav>
+  <ModalMenu
+    isOpen={isModalOpen}
+    onClose={() => setIsModalOpen(false)}
+    items={modalItems}
+  />
+</div>
+
+
+
+</div>
   );
 };
 
