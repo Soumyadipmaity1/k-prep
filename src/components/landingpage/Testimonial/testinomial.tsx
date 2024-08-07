@@ -28,7 +28,7 @@ const Testimonials: React.FC = () => {
   return (
     <section className="bg-white py-10 pb-16 sm:px-16">
       <div className="container mx-auto text-center">
-        <h2 className="text-5xl font-bold mb-6">What our users say about us?</h2>
+        <h2 className="sm:text-5xl text-[38px] font-bold mb-6">What our users say about us?</h2>
         <p className="text-gray-600 mb-12 px-4 sm:px-16">
           Lorem ipsum dolor sit amet. Hic recusandae similique non culpa nulla ut repellendus sunt et voluptatem perferendis ex quae quisquam.
           Qui nostrum voluptas qui repudiandae consequatur ut aliquid voluptas qui voluptas rerum.
