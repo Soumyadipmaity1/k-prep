@@ -33,14 +33,14 @@ const Testimonials: React.FC = () => {
           Lorem ipsum dolor sit amet. Hic recusandae similique non culpa nulla ut repellendus sunt et voluptatem perferendis ex quae quisquam.
           Qui nostrum voluptas qui repudiandae consequatur ut aliquid voluptas qui voluptas rerum.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 sm:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-1 sm:px-16">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-testimonial  p-6 flex items-center shadow-md"
+              className="bg-testimonial  sm:p-6 p-2 flex items-center shadow-md"
             >
-              <div className="bg-gray-300 rounded-full w-40 mr-4">
-                <Image src="/k-prep1.png" width={144} height={144} alt="" className='rounded-full w-40' />
+              <div className="bg-gray-300 rounded-full sm:w-40 mr-4">
+                <Image src="/k-prep1.png" width={144} height={144} alt="" className='rounded-full sm:w-40' />
               </div>
               <div className="text-left">
                 <h3 className="text-xl mb-1  font-bold">{testimonial.name}</h3>
