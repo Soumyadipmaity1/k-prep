@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   return (
     <div className={denkOne.className}>
     <footer className="bg-purple-600 rounded-xl mt-8 text-white p-4 sm:p-6 sm:px-16">
-      <div className="container mx-auto flex justify-between">
+      <div className="container mx-auto flex justify-between px-3 sm:px-0">
         <div>
           <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
           <p className="flex items-center mb-2">
