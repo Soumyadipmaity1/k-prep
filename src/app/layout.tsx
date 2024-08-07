@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={denkOne.className}>
-      <body className=" sm:p-5 body-shadow sm:m-5 m-3 p-4 rounded-md sm:rounded-xl">
+      <body className=" sm:p-5 body-shadow sm:m-5 m-2 p-3 rounded-md sm:rounded-xl">
 <div className=''>
 <Navbar />
 
