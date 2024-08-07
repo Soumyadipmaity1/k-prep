@@ -2,10 +2,10 @@ import Subject1Notes from "@/components/Resource1stYear/ResourceSchemeA/Subject1
 
 const Subject1 = () => {
     return (
-        <div className="w-full h-full bg-[#f8e9f4] overflow-y-auto border rounded-xl border-gray-300">
-          <div className="max-h-screen font-bold p-10">
-<h1 className="text-center  text-4xl"><span className="modal-text ">Pick your notes!</span></h1>
-<div className="mt-10">
+        <div className="sm:w-full w-80 h-full bg-[#f8e9f4] overflow-y-auto recommended-scrollbar border rounded-xl border-gray-300">
+          <div className="max-h-screen font-bold p-3 py-5 sm:p-10">
+<h1 className="text-center text-3xl sm:text-4xl"><span className="modal-text ">Pick your notes!</span></h1>
+<div className="mt-5 sm:mt-10">
 
 <Subject1Notes/>
 </div>
