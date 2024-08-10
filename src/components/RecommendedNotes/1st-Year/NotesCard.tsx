@@ -20,7 +20,7 @@ const Card: React.FC<CardProps> = ({ title, imageSrc, description, pdfUrl }) => 
   return (
     <div className="bg-recommended rounded-xl shadow-lg flex flex-col justify-center sm:p-4 p-2 w-48 sm:w-60 mx-2">
       <div className="h-48 w-full bg-gray-200 rounded-md mb-4 relative">
-        <Image src={imageSrc} alt={title} layout="fill" objectFit="cover" className="rounded-md" />
+        <Image src={imageSrc} alt={title} layout="fill" className="rounded-md" />
       </div>
       <h2 className="text-xl font-bold mb-2">{title}</h2>
       <p className="text-gray-700 mb-4">{description}</p>
