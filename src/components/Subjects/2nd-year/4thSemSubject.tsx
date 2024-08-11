@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = ({ subject, name, code, credit }) => {
   return (
     <div
       onClick={handleClick}
-      className="flex subject-card px-5 rounded-xl p-4 shadow-lg m-5 cursor-pointer"
+      className="flex subject-card px-5 rounded-xl p-4 shadow-lg sm:m-5 my-3 cursor-pointer"
     >
       <div className="flex w-28 mr-6 rounded-xl items-center bg-white justify-center ">
         <div className="  rounded-full flex items-center justify-center">
@@ -29,15 +29,14 @@ const Card: React.FC<CardProps> = ({ subject, name, code, credit }) => {
         </div>
       </div>
       <div className="text-start px-4">
-        <h2 className="text-2xl font-bold text-white">{subject}</h2>
-        <p className="text-white">{name}</p>
-        <div className="mt-4">
+        <h2 className="sm:text-2xl text-xl font-bold text-white">{subject}</h2>
+        <p className="text-white sm:text-base text-[15px]">{name}</p>
+        <div className="sm:mt-4 mt-2">
           <p className="text-white">Code: {code}</p>
           <p className="text-white">Credit: {credit}</p>
         </div>
       </div>
-    </div>
-  );
+    </div> );
 };
 
 const ForthSemSubject: React.FC = () => {
