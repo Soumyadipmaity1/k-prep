@@ -5,7 +5,7 @@ import Testimonials from "@/components/landingpage/Testimonial/testinomial";
 import { denkOne } from './font';
 import dynamic from 'next/dynamic';
 import Hero from '@/components/landingpage/Hero/Hero';
-const MaterialSlider = dynamic(() => import('../components/Slider/SliderComponent'), { ssr: false });
+import Footer from '@/components/Footer/footer';
 
 export default function Home() {
   return (
@@ -16,6 +16,8 @@ export default function Home() {
       <FeatureSection />
       <Testimonials />
       <Team />
+      <Footer />
+
 </div>
     </div>
   );
