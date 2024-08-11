@@ -3,7 +3,7 @@ import CardResources from "@/components/RecommendedNotes/1st-Year/NotesCard";
 const CseNotesPage = () => {
   return (
     <div className="w-full h-full bg-[#f8e9f4] overflow-y-auto border rounded-xl border-gray-300">
-      <div className="bg-[rgb(248,233,244)] p-3 py-4 sm:p-10 sm:pb-0">
+      <div className="bg-[rgb(248,233,244)] p-3 sm:p-10 sm:pb-0">
         <h1 className="sm:text-4xl text-xl font-bold mb-5">Recommended Notes for CSE</h1>
         <div className="bg-[#f8e9f4]">
           <h1 className="mb-4 sm:text-2xl text-base pl-1">1st Year Notes:</h1>
