@@ -36,7 +36,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
   const getNavItemClass = (path: string) => {
     return pathname.startsWith(path)
       ? 'text-black sm:text-white border-0 sm:border-l-4 border-[#d998ff]'
-      : 'hover:text-black sm:hover-text-white hover:border-l-2 sm:hover:border-l-4 border-[#d998ff]';
+      : 'hover:text-black sm:hover:border-l-4 border-[#d998ff]';
   };
 
   return (
@@ -146,7 +146,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       {/* Mobile Bottom Navigation Bar */}
-      <nav className="sm:hidden fixed bottom-0 left-0 w-full px-4 py-1.5 bg-sidebar bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 text-white rounded-t-xl shadow-lg flex justify-around items-center z-50 border border-[#d998ff]">
+      <nav className="sm:hidden fixed bottom-0 left-0 w-full px-4 py-1.5 bg-sidebar text-white rounded-t-xl shadow-lg flex justify-around items-center z-50 border border-[#d998ff]">
   <div className="flex flex-col items-center cursor-pointer">
     <Link href="/">
       <HomeIcon width={26} height={26} className="mx-auto" />
@@ -185,7 +185,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
 </nav>
 
       {/* Mobile Content Section */}
-      <main className="sm:hidden sm:p-4 p-1 py-3 pb-5 sm:pb-4">{children}</main>
+      <main className="sm:hidden p-1 py-3 pb-5">{children}</main>
 
       {/* Modals */}
       {isModalOpen && modalContent}
