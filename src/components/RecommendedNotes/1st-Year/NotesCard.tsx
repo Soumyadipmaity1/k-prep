@@ -22,8 +22,8 @@ const Card: React.FC<CardProps> = ({ title, imageSrc, description, pdfUrl }) => 
       <div className="h-48 w-full bg-gray-200 rounded-md mb-4 relative">
         <Image src={imageSrc} alt={title} layout="fill" className="rounded-md" />
       </div>
-      <h2 className="text-xl font-bold mb-2">{title}</h2>
-      <p className="text-gray-700 mb-4">{description}</p>
+      <h2 className="sm:text-xl font-bold text-base mb-2">{title}</h2>
+      <p className="text-gray-700 text-sm sm:text-base mb-4">{description}</p>
       <button
         onClick={handleOpenPdf}
         className="bg-[#843ab1] text-white sm:px-4 py-1 rounded-full hover:bg-[#b864c8] text-center transition duration-300"
