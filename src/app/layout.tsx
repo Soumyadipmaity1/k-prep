@@ -26,7 +26,7 @@ export default function RootLayout({
 
 </div>
         {children}
-        <Footer />
+
       </body>
     </html>
   );
