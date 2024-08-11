@@ -26,7 +26,7 @@ const Subject1Notes: React.FC = () => {
           <div className="flex ">
             {[...Array(5)].map((_, i) => (
               <svg
-                key={i}
+                key={i} 
                 xmlns="http://www.w3.org/2000/svg"
                 className={`sm:w-6 sm:h-6 w-4 ${i < resource.rating ? 'text-purple-500' : 'text-gray-300'}`}
                 viewBox="0 0 20 20"
