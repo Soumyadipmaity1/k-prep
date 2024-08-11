@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({ title, imageSrc, description, pdfUrl }) => 
       <p className="text-gray-700 text-sm sm:text-base mb-4">{description}</p>
       <button
         onClick={handleOpenPdf}
-        className="bg-[#843ab1] text-white sm:px-4 py-1 rounded-full hover:bg-[#b864c8] text-center transition duration-300"
+        className="bg-[#843ab1] text-white sm:px-4 py-1 rounded-full hover:bg-[#b864c8] text-center transition duration-500"
       >
         Open PDF
       </button>
@@ -60,7 +60,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="w-auto h-full overflow-x-auto border py-5 rounded-xl border-gray-300" style={{ scrollbarWidth: 'none' }}>
-      <div className="bg-[#f8e9f4] h-96 py-5 flex items-center">
+      <div className="bg-[#f8e9f48c] sm:h-96 sm:py-5 flex items-center">
         <main className="flex space-x-4">
           {resources.map((resource, index) => (
             <Card
