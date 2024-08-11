@@ -146,14 +146,14 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       {/* Mobile Bottom Navigation Bar */}
-      <nav className="sm:hidden bg-sidebar fixed bottom-0 left-0 w-full bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 text-white py-1.5 px-4 rounded-t-xl shadow-lg flex justify-around items-center z-50">
-      <div className="flex flex-col items-center cursor-pointer">
+      <nav className="sm:hidden fixed bottom-0 left-0 w-full px-4 py-1.5 bg-sidebar bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 text-white rounded-t-xl shadow-lg flex justify-around items-center z-50 border border-[#d998ff]">
+  <div className="flex flex-col items-center cursor-pointer">
     <Link href="/">
-      <HomeIcon width={26} height={26} className='mx-auto' />
+      <HomeIcon width={26} height={26} className="mx-auto" />
       <span className="text-xs">Home</span>
     </Link>
   </div>
-  
+
   <div
     className={`flex flex-col items-center cursor-pointer ${getNavItemClass('/cse-notes/1st-year')}`}
     onClick={() => openModal(<FirstYearModal isOpen={true} onClose={closeModal} title="First Year" yearPath="/cse-notes/1st-year" />)}
@@ -175,22 +175,17 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
     <MdLooks3 size={28} />
     <span className="text-xs">3rd Year</span>
   </div>
-  {/* <div
-    className={`flex flex-col items-center cursor-pointer ${getNavItemClass('/cse-notes/additional-notes')}`}
-    onClick={() => router.push('/cse-notes/additional-notes')}
-  >
-    <FiEdit size={24} />
-    <span className="text-xs">Additional Notes</span>
-  </div> */}
+  
   <div className="flex flex-col items-center cursor-pointer">
     <Link href="https://google.com" target="_blank">
-      <FaRegComment size={24} className='mx-auto' />
+      <FaRegComment size={24} className="mx-auto" />
       <span className="text-xs">Feedback</span>
     </Link>
   </div>
 </nav>
+
       {/* Mobile Content Section */}
-      <main className="sm:hidden p-2">{children}</main>
+      <main className="sm:hidden sm:p-4 p-1 py-3 pb-5 sm:pb-4">{children}</main>
 
       {/* Modals */}
       {isModalOpen && modalContent}
