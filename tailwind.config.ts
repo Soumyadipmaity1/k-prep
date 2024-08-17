@@ -18,6 +18,8 @@ const config: Config = {
       },
       height: {
         'screen-minus-20': 'calc(100vh - 240px)',
+        'screen-minus-10': 'calc(100vh - 230px)',
+
         // 'screen-minus-30': 'calc(100vh - 135px)',
 
       },
