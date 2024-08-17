@@ -8,9 +8,7 @@ const Team: React.FC = () => {
       <div className="text-center">
         <h1 className="text-5xl font-bold tracking-[0.5px] text-[#231D1F]">Our Team</h1>
         <p className="p-5 pb-10 text-justify text-[#1d1d1d]  sm:px-20">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates magni cupiditate eaque soluta excepturi
-          corporis vel voluptate modi tempora perferendis. Consequatur libero a sapiente ullam, repudiandae eum et
-          similique nulla!
+        Curious to know the names and faces behind this beauty!!? Meet our team; they are the secret of all our resources!!!
         </p>
       </div>
       <div className="flex flex-wrap justify-around pt-10 sm:mx-20">
