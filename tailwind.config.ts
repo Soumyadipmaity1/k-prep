@@ -17,8 +17,8 @@ const config: Config = {
         denk: ['Denk One', 'sans-serif'],
       },
       height: {
-        'screen-minus-20': 'calc(100vh - 185px)',
-        'screen-minus-30': 'calc(100vh - 80px)',
+        'screen-minus-20': 'calc(100vh - 225px)',
+        'screen-minus-30': 'calc(100vh - 120px)',
 
       },
     },
