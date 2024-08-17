@@ -16,6 +16,9 @@ const config: Config = {
       fontFamily: {
         denk: ['Denk One', 'sans-serif'],
       },
+      height: {
+        'screen-minus-20': 'calc(100vh - 185px)',
+      },
     },
   },
   plugins: [],
