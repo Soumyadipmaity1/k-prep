@@ -32,17 +32,19 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, title, yearPath }) => {
         >
           <FaTimes size={24} />
         </button>
-        <p className=" mb-8 text-schemeB p-5 text-3xl">Please select your scheme.</p>
-        <div className="flex justify-around">
-          <button
+        <p className=" mb-8 text-scheme p-5 text-3xl">Please select your scheme.</p>
+        <div className='flex justify-evenly '>         
+        <div className='bg-[#fbd6ff] bg-schemeA  rounded-lg border-2 border-[#843ab1] '>        
+    <button
             onClick={() => navigateToScheme('schemeA')}
-            className="bg-schemeA text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-2xl transition"
+            className=" text-schemeB px-8 py-4  transition"
           >
             Scheme A
-          </button>
-<div className='bg-[#fbd6ff] rounded-lg border-2 border-[#843ab1] '>          <button
+          </button></div>
+<div className='bg-[#fbd6ff] bg-schemeA rounded-lg  border-2 border-[#843ab1] '>        
+    <button
             onClick={() => navigateToScheme('schemeB')}
-            className=" text-schemeB px-8 py-4   transition"
+            className=" text-schemeB px-8 py-4  transition"
           >
             Scheme B
           </button></div>
