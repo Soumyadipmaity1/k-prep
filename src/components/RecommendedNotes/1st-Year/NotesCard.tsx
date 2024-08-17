@@ -50,10 +50,10 @@ const Home: NextPage = () => {
       pdfUrl: './L2.pdf',
     },
     {
-      title: 'Resource 3',
-      imageSrc: '/daa.png',
+      title: 'Computer Networks',
+      imageSrc: '/recommended/cn.png',
       description: 'Duis aute irure dolor in reprehenderit in voluptate',
-      pdfUrl: './L2.pdf',
+      pdfUrl: 'https://drive.google.com/file/d/1HnooRCMc6xNnplOOJSofCmGGt274Pk-L/view',
     },
     
   ];
