@@ -98,7 +98,7 @@ border-radius: 90px;
   @apply absolute bottom-0 left-0 right-0 bg-opacity-50 text-white;
 }
 
-.bg-schemeA{
+.bg-schemeA:hover{
   background: radial-gradient(83.02% 83.02% at 50% 50%, #EE85BB 0%, #843AB1 100%) 
 }
 
@@ -107,8 +107,21 @@ background: linear-gradient(91.46deg, #EE85BB 1.24%, #843AB1 51.94%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 background-clip: text;
-
 }
+
+.text-scheme{
+  background: linear-gradient(91.46deg, #EE85BB 1.24%, #843AB1 51.94%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  }
+.text-schemeB:hover{
+  background: linear-gradient(91.46deg, #ffffff 1.24%, #fffeff 51.94%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  }
 
 .subject-card{
 
