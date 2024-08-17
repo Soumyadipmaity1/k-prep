@@ -146,6 +146,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       {/* Mobile Bottom Navigation Bar */}
+      <div className=''>
       <nav className="sm:hidden fixed bottom-0 left-0 w-full px-4 py-1.5 bg-sidebar text-white rounded-t-xl shadow-lg flex justify-around items-center z-50 border border-[#d998ff]">
   <div className="flex flex-col items-center cursor-pointer">
     <Link href="/">
@@ -185,10 +186,12 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
 </nav>
 
       {/* Mobile Content Section */}
-      <main className="sm:hidden p-1 py-3 pb-5">{children}</main>
+      <main className="sm:hidden p-1 py-1 pt-3 ">{children}</main>
 
       {/* Modals */}
       {isModalOpen && modalContent}
+      </div>
+    
     </div>
   );
 };
