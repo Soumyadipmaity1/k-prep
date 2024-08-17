@@ -5,19 +5,22 @@ import Image from 'next/image';
 
 const Hero: FC = () => {
   return (
-    <section className="flex flex-col md:flex-row sm:gap-28 items-center justify-between  sm:px-16 bg-white">
-      <div className=" mb-6 md:mb-0 mt-10 text-center sm:text-start">
+    <section className="flex flex-col md:flex-row sm:gap-20 items-center justify-between  sm:px-16 bg-white">
+      <div className="sm:w-3/5 mb-6 md:mb-0 mt-10 text-center sm:text-start">
         <h1 className="sm:text-7xl text-5xl font-bold mb-4">READ, LEARN,</h1>
         <h1 className="sm:text-7xl text-5xl font-bold mb-4"> ACE!</h1>
 
-        <p className="text-gray-600 sm:mb-6 sm:px-0 px-4 text-justify   sm:mt-8 mt-5 font-sans">
-          Lorem ipsum dolor sit amet. Non voluptatum explicabo et vo sunt non repellat nesciunt? Id sunt sapiente hic dolores dolo vitae ratione. Est expedita animi ea culpa.
+        <p className="text-gray-600 sm:mb-6 sm:px-0 px-4 text-justify font-semibold  sm:mt-8 mt-5 font-sans">
+        Do you also feel left out when you miss a lecture or two and the notes become inconsistent!? Well, not now,
+Join K-prep for all subjects&apos; class notes, labs, and ace your exam prep with our PYQs.
+We bring all these materials under one platform, curated just for your needs.
+With our help, you&rsquo;ll always catch up on your academic prep!
         </p>
         <button className="px-8  py-3 mt-8 bg-purple-500 text-white font-semibold rounded-md hover:bg-purple-700">
           Explore More
         </button>
       </div>
-      <div className="relative w-full hidden sm:flex flex-col items-center">
+      <div className=" relative sm:w-3/5 hidden sm:flex flex-col items-center">
 
         <Image src="/hero.png" alt="Read, Learn, Ace" width={944} height={544} className="rounded-lg w-[900px]" />
 
