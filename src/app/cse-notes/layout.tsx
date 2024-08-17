@@ -35,8 +35,8 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
 
   const getNavItemClass = (path: string) => {
     return pathname.startsWith(path)
-      ? 'border-t-4 sm:text-white border-0 sm:border-l-4 border-white sm:border-[#d998ff]'
-      : 'hover:border-t-4 sm:hover:border-l-4 border-white sm:border-[#d998ff]';
+      ? 'border-t-4 sm:border-t-0 sm:text-white border-0 sm:border-l-4 border-white sm:border-[#d998ff]'
+      : 'hover:border-t-4 sm:hover:border-t-0 sm: sm:hover:border-l-4 border-white sm:border-[#d998ff]';
   };
 
   return (
