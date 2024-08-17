@@ -30,7 +30,7 @@ const ModalMenu: React.FC<ModalMenuProps> = ({ isOpen, onClose, items }) => {
       <div
         className={`bg-[#f8e9f4] p-8 rounded-lg shadow-lg relative text-center transition-all duration-300 ease-in-out ${
           isDropdownOpen ? 'sm:h-[450px] h-[520px] ' : 'sm:h-60'
-        } sm:w-[800px] w-[320px]`}
+        } sm:w-[800px] w-[380px]`}
       >
         <button onClick={onClose} className="absolute top-2 right-4 text-gray-600 text-4xl">
           &times;
