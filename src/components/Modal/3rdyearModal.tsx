@@ -32,19 +32,19 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, title, yearPath }) => {
         >
           <FaTimes size={24} />
         </button>
-        <p className=" mb-8 text-scheme p-5 text-3xl">Please select your scheme.</p>
+        <p className=" mb-8 text-scheme sm:p-5 p-4 text-3xl">Please select your scheme.</p>
         <div className='flex justify-evenly '>         
         <div className='bg-[#fbd6ff] bg-schemeA  rounded-lg border-2 border-[#843ab1] '>        
     <button
             onClick={() => navigateToScheme('5thSem')}
-            className=" text-schemeB px-8 py-4  transition"
+            className=" text-schemeB  px-6 sm:px-8 py-4  transition"
           >
             5th Semester
             </button></div>
 <div className='bg-[#fbd6ff] bg-schemeA rounded-lg  border-2 border-[#843ab1] '>        
     <button
             onClick={() => navigateToScheme('6thSem')}
-            className=" text-schemeB px-8 py-4  transition"
+            className=" text-schemeB  px-6 sm:px-8 py-4  transition"
           >
             6th Semester
           </button></div>
