@@ -186,7 +186,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
 </nav>
 
       {/* Mobile Content Section */}
-      <main className="sm:hidden p-1 py-1 pt-3 ">{children}</main>
+      <main className="sm:hidden p-1 py-1 pt-3 h-screen-minus-20 ">{children}</main>
 
       {/* Modals */}
       {isModalOpen && modalContent}
