@@ -1,10 +1,14 @@
+import Navbar from '@/components/Menubar/Navbar/Navbar'
 import React from 'react'
 
 function page() {
   return (
-    <div className='sm:text-5xl text-4xl flex justify-center items-center h-screen font-extrabold'>
+    <div>
+    <Navbar/>
+     <div className='text-5xl flex justify-center items-center h-screen font-extrabold'>
       Will Be Updated Soon !
     </div>
+   </div>
   )
 }
 
