@@ -8,6 +8,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { denkOne } from '../font';
 import { HomeIcon } from '@heroicons/react/24/solid';
+import Navbar from "@/components/Menubar/Navbar/Navbar"
 const FirstYearModal = dynamic(() => import('@/components/Modal/1styearmodal'));
 const SecondYearModal = dynamic(() => import('@/components/Modal/2ndyearModal'));
 const ThirdYearModal = dynamic(() => import('@/components/Modal/3rdyearModal'));
@@ -41,6 +42,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className={denkOne.className}>
+      <Navbar/>
       <div className={denkOne.className}>
         {/* Desktop Sidebar */}
         <div className="sm:flex hidden justify-between h-screen mt-6 rounded-xl">
