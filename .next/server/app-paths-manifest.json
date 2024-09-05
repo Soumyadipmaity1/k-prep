@@ -1,0 +1,8 @@
+{
+  "/login/admin/add-note/page": "app/login/admin/add-note/page.js",
+  "/page": "app/page.js",
+  "/cse-notes/3rd-year/5thSem/page": "app/cse-notes/3rd-year/5thSem/page.js",
+  "/cse-notes/2nd-year/4thSem/page": "app/cse-notes/2nd-year/4thSem/page.js",
+  "/cse-notes/1st-year/schemeA/page": "app/cse-notes/1st-year/schemeA/page.js",
+  "/cse-notes/page": "app/cse-notes/page.js"
+}

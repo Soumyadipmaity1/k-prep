@@ -1,0 +1,77 @@
+{
+  "pages": {
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/cse-notes/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/cse-notes/page.js"
+    ],
+    "/cse-notes/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/cse-notes/layout.css",
+      "static/chunks/app/cse-notes/layout.js"
+    ],
+    "/cse-notes/3rd-year/5thSem/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/cse-notes/3rd-year/5thSem/page.js"
+    ],
+    "/cse-notes/2nd-year/3rdSem/subject1/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/cse-notes/2nd-year/3rdSem/subject1/page.js"
+    ],
+    "/cse-notes/2nd-year/3rdSem/subject3/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/cse-notes/2nd-year/3rdSem/subject3/page.js"
+    ],
+    "/cse-notes/2nd-year/3rdSem/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/cse-notes/2nd-year/3rdSem/page.js"
+    ],
+    "/login/admin/add-note/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/login/admin/add-note/page.js"
+    ],
+    "/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/login/page.js"
+    ],
+    "/login/admin/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/login/admin/page.js"
+    ],
+    "/cse-notes/3rd-year/6thSem/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/cse-notes/3rd-year/6thSem/page.js"
+    ],
+    "/cse-notes/1st-year/schemeA/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/cse-notes/1st-year/schemeA/page.js"
+    ],
+    "/cse-notes/2nd-year/4thSem/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/cse-notes/2nd-year/4thSem/page.js"
+    ]
+  }
+}

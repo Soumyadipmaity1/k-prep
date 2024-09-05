@@ -1,0 +1,20 @@
+{
+  "app\\cse-notes\\layout.tsx -> @/components/Modal/1styearmodal": {
+    "id": "app\\cse-notes\\layout.tsx -> @/components/Modal/1styearmodal",
+    "files": [
+      "static/chunks/_app-pages-browser_src_components_Modal_1styearmodal_tsx.js"
+    ]
+  },
+  "app\\cse-notes\\layout.tsx -> @/components/Modal/2ndyearModal": {
+    "id": "app\\cse-notes\\layout.tsx -> @/components/Modal/2ndyearModal",
+    "files": [
+      "static/chunks/_app-pages-browser_src_components_Modal_2ndyearModal_tsx.js"
+    ]
+  },
+  "app\\cse-notes\\layout.tsx -> @/components/Modal/3rdyearModal": {
+    "id": "app\\cse-notes\\layout.tsx -> @/components/Modal/3rdyearModal",
+    "files": [
+      "static/chunks/_app-pages-browser_src_components_Modal_3rdyearModal_tsx.js"
+    ]
+  }
+}
