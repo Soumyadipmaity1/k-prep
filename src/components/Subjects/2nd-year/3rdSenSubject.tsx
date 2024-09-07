@@ -1,68 +1,112 @@
 "use client";
 
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type CardProps = {
-  subject: string;
-  name: string;
+  subjectFullName: string;
+  description: string;
   code: string;
   credit: number;
+  pdfUrl: string;
 };
 
-const Card: React.FC<CardProps> = ({ subject, name, code, credit }) => {
+const Card: React.FC<CardProps> = ({ subjectFullName, description, code, credit, pdfUrl }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    const route = `/cse-notes/2nd-year/3rdSem/${subject.toLowerCase().replace(' ', '-')}`;
+    const route = `/cse-notes/2nd-year/3rdSem/${subjectFullName
+      .toLowerCase()
+      .replace(/ /g, "-")}`;
     router.push(route);
   };
 
   return (
     <div
-    onClick={handleClick}
-    className="flex subject-card px-5 rounded-xl p-4 shadow-lg sm:m-5 my-3 cursor-pointer"
-  >
-    <div className="flex w-28 mr-6 rounded-xl items-center bg-white justify-center ">
-      <div className="  rounded-full flex items-center justify-center">
-        <span className="text-3xl font-bold text-purple-500">👤</span>
+      onClick={handleClick}
+      className="flex subject-card px-5 rounded-xl p-4 shadow-lg sm:m-5 my-3 cursor-pointer"
+    >
+      <div className="flex w-28 mr-6 rounded-xl items-center bg-white justify-center ">
+        <div className="rounded-full flex items-center justify-center">
+          <span className="text-3xl font-bold text-purple-500">👤</span>
+        </div>
+      </div>
+      <div className="text-start px-4">
+        <h2 className="sm:text-2xl text-xl font-bold text-white">{subjectFullName}</h2>
+        <p className="text-white sm:text-base text-[15px]">{description}</p>
+        <div className="sm:mt-4 mt-2">
+          <p className="text-white">Code: {code}</p>
+          <p className="text-white">Credit: {credit}</p>
+          <a href={pdfUrl} className="text-blue-300 underline" target="_blank" rel="noopener noreferrer">
+            View Notes
+          </a>
+        </div>
       </div>
     </div>
-    <div className="text-start px-4">
-      <h2 className="sm:text-2xl text-xl font-bold text-white">{subject}</h2>
-      <p className="text-white sm:text-base text-[15px]">{name}</p>
-      <div className="sm:mt-4 mt-2">
-        <p className="text-white">Code: {code}</p>
-        <p className="text-white">Credit: {credit}</p>
-      </div>
-    </div>
-  </div>
   );
 };
 
-const ThirdSemSubject: React.FC = () => {
-  const cardData = [
-    { subject: 'subject1', name: 'Full Name 1', code: 'CS0001', credit: 3 },
-    { subject: 'subject2', name: 'Full Name 2', code: 'CS0002', credit: 4 },
-    { subject: 'subject3', name: 'Full Name 3', code: 'CS0003', credit: 2 },
+const fetchNotes = async (year: number, sem: number): Promise<CardProps[]> => {
+  const response = await fetch(
+    `http://localhost:5000/api/v1/notes/get_note/${year}/${sem}`
+  );
+  // console.log(response)
+  if (!response.ok) {
+    throw new Error("Failed to fetch notes");
+  }
+  const data = await response.json();
+  // console.log(data)
+  return data.notes;
+};
 
-    { subject: 'subject1', name: 'Full Name 1', code: 'CS0001', credit: 3 },
-    { subject: 'subject2', name: 'Full Name 2', code: 'CS0002', credit: 4 },
-    { subject: 'subject3', name: 'Full Name 3', code: 'CS0003', credit: 2 },
+const ThirdSemSubject = ({ year, sem }: { year: number; sem: number }) => {
+  const [notes, setNotes] = useState<CardProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  ];
+  const fetchAndSetNotes = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const fetchedNotes = await fetchNotes(year, sem); // Fetch notes by year and semester
+      setNotes(fetchedNotes);
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "An unknown error occurred"
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, [year, sem]);
 
+  useEffect(() => {
+    fetchAndSetNotes();
+  }, [year, sem]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+console.log("Hello",notes)
   return (
     <div className="flex flex-wrap justify-center items-center">
-      {cardData.map((data, index) => (
-        <Card
-          key={index}
-          subject={data.subject}
-          name={data.name}
-          code={data.code}
-          credit={data.credit}
-        />
-      ))}
+      {notes && notes.length > 0 ? (
+        notes.map((data, index) => (
+          <Card
+            key={index}
+            subjectFullName={data.subjectFullName}
+            description={data.description}
+            code={data.code}
+            credit={data.credit}
+            pdfUrl={data.pdfUrl}
+          />
+        ))
+      ) : (
+        <p>No notes found for this semester.</p>
+      )}
     </div>
   );
 };

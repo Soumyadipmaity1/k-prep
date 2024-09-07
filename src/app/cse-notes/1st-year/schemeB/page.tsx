@@ -1,4 +1,4 @@
-import SchemeBSubject from "@/components/Subjects/1st-year/SchemeBSubject";
+import SubjectButton from "@/components/Subjects/2nd-year/3rdSenSubject";
 
 const SchemeB= () => {
     return (
@@ -7,7 +7,7 @@ const SchemeB= () => {
 <h1 className=" text-center sm:text-4xl text-3xl"><span className="modal-text">Pick a subject for your notes!</span></h1>
 <div className="mt-10">
 
-  <SchemeBSubject/>
+  <SubjectButton year={1} sem={2} />
 </div>
 
           </div>

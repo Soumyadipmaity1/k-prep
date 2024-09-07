@@ -7,7 +7,7 @@ const SchemeA = () => {
 <h1 className=" text-center text-4xl"><span className="modal-text">Pick a subject for your notes!</span></h1>
 <div className="mt-10">
 
-  <SubjectButton/>
+  <SubjectButton year={2} sem={3} />
 </div>
 
           </div>
