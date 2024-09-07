@@ -43,9 +43,10 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className={denkOne.className}>
       <Navbar/>
+
       <div className={denkOne.className}>
         {/* Desktop Sidebar */}
-        <div className="sm:flex hidden justify-between h-screen mt-6 rounded-xl">
+        <div className="sm:flex hidden justify-between h-screen-minus-5 mt-6 rounded-xl">
           <aside
             className={`bg-sidebar text-white rounded-xl transition-all duration-300 ${
               isOpen ? 'w-56' : 'w-20'
@@ -145,7 +146,6 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
           </aside>
           <main className="flex-1 p-4">{children}</main>
         </div>
-      </div>
 
       {/* Mobile Bottom Navigation Bar */}
       <div className=''>
@@ -186,7 +186,7 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
     </Link>
   </div>
 </nav>
-
+</div>
       {/* Mobile Content Section */}
       <main className="sm:hidden p-1 py-1 pt-3 h-screen-minus-10 ">{children}</main>
 
