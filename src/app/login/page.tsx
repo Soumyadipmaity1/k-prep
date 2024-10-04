@@ -9,8 +9,8 @@ import { isAuthenticated } from "./../../lib/Auth";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("Invalid credentials");
+  const [success, setSuccess] = useState("Login successful");
   const router = useRouter();
   const isAuth = isAuthenticated();
   if (isAuth) {
@@ -26,32 +26,22 @@ const LoginPage = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/auth/login`, {
+      const res = await fetch(`/api/auth/sign-in`, {
         method: "POST", // Changed to POST for login
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({ email, password }),
       });
-      console.log(res.status);
-      // if (!res.ok) {
-      //   throw new Error("Failed to login");
-      // }
+    
 
       const data = await res.json();
-      console.log(data.message);
+      console.log(data);
       if (res.status !== 200) {
-        setError(data.message);
+        setError(data?.message);
         toast.error(error && error);
       } else {
         setError("");
         setSuccess("Login successful");
         toast.success(success && success);
-        // console.log(data.accessToken);
-        localStorage.setItem("token", data.accessToken);
-        setTimeout(() => {
-          router.push("/login/admin", { scroll: false });
-        }, 2000);
+       
       }
     } catch (error) {
       console.error("Error logging in:", error);

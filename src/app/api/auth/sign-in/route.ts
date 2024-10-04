@@ -74,6 +74,7 @@ export async function POST(request: NextRequest) {
       secure: true,
       sameSite: "strict",
     });
+    console.log("login Done");
     return response;
   } catch (error:any) {
     console.error("Error during login process:", error);
