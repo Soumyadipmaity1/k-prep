@@ -1,17 +1,20 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+const PUBLIC_PATHS = ["/login"];
+const PRIVATE_PATHS = ["/admin", "/add-note", "/add-user"];
+
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
-  // Define public and private routes
-  const isPublicPath = path === "/login";
-  const isPrivatePath =
-    path.startsWith("/admin") || path === "/add-note" || path === "/add-user";
+  const isPublicPath = PUBLIC_PATHS.includes(path);
+  const isPrivatePath = PRIVATE_PATHS.some((privatePath) =>
+    path.startsWith(privatePath)
+  );
 
-  // Get the token from cookies
+  // Retrieve the token from cookies
   const token = request.cookies.get("token")?.value || "";
-// console.log(token)
+
   // Redirect unauthenticated users trying to access private routes
   if (!token && isPrivatePath) {
     return NextResponse.redirect(new URL("/login", request.nextUrl));
