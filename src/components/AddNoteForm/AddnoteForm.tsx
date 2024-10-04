@@ -2,13 +2,13 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import toast from "react-hot-toast";
 // import isAuthenticated
-import { isAuthenticated } from "./../../lib/Auth";
+// import { isAuthenticated } from "./../../lib/Auth";
 import { redirect } from "next/navigation";
 const AddNoteForm: React.FC = () => {
-  const isAuth = isAuthenticated();
-  if (!isAuth) {
-    redirect("/login");
-  }
+  // const isAuth = isAuthenticated();
+  // if (!isAuth) {
+  //   redirect("/login");
+  // }
   const [year, setYear] = useState<string>("");
   const [semesterOptions, setSemesterOptions] = useState<string[]>([]);
   const [creditOptions] = useState<string[]>(["1", "2", "3", "4"]);
