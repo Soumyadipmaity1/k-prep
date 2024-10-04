@@ -40,6 +40,7 @@ const LoginPage = () => {
       } else {
         setError("");
         setSuccess("Login successful");
+        router.push("/admin");
         toast.success(success && success);
        
       }
