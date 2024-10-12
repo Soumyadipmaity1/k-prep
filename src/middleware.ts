@@ -17,12 +17,12 @@ export function middleware(request: NextRequest) {
 
   // Redirect unauthenticated users trying to access private routes
   if (!token && isPrivatePath) {
-    return NextResponse.redirect(new URL("/login", request.nextUrl));
+    // return NextResponse.redirect(new URL("/login", request.nextUrl));
   }
 
   // Redirect authenticated users trying to access the login page
   if (token && isPublicPath) {
-    return NextResponse.redirect(new URL("/admin", request.nextUrl));
+    // return NextResponse.redirect(new URL("/admin", request.nextUrl));
   }
 
   // Allow the request if it's to a public page or if user is authenticated for private routes
@@ -31,5 +31,5 @@ export function middleware(request: NextRequest) {
 
 // Matcher configuration
 export const config = {
-  matcher: ["/admin/:path*", "/add-note", "/add-user", "/login"],
+  // matcher: ["/admin/:path*", "/add-note", "/add-user", "/login"],
 };
