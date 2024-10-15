@@ -2,13 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const AdminSidebar = () => {
   const router = useRouter();
 
   const user = {
-    name: "Admin User", 
+    name: "Admin User",
     role: "Admin",
   };
 
@@ -25,7 +25,10 @@ const AdminSidebar = () => {
     }
   };
 
+  const path = usePathname();
+
   const menuItems = [
+    { name: "Dashboard", path: "/admin" },
     { name: "Add Note", path: "/admin/add-note" },
     { name: "Add User", path: "/admin/add-user" },
     { name: "View Notes", path: "/admin/view-note" },
@@ -33,7 +36,6 @@ const AdminSidebar = () => {
 
   return (
     <aside className="w-64 bg-fuchsia-800 rounded-xl text-white ">
-
       <div className="p-4 border-b border-gray-700">
         <p className="text-lg font-semibold">{user.name}</p>
         <p className="text-sm text-gray-400">{user.role}</p>
@@ -43,8 +45,13 @@ const AdminSidebar = () => {
         <ul>
           {menuItems.map((item) => (
             <li key={item.path} className="mb-2">
-              <Link className="block px-4 py-2 hover:bg-fuchsia-500" href={item.path}>
-{item.name}
+              <Link
+                className={`block px-4 py-2 transition-all duration-500 ${
+                  path === item.path && "bg-fuchsia-500"
+                } hover:bg-fuchsia-400`}
+                href={item.path}
+              >
+                {item.name}
               </Link>
             </li>
           ))}
