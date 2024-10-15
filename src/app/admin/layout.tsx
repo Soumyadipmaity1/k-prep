@@ -1,9 +1,24 @@
+"use client";
+
 import React from "react";
-// impot useRouter
-export default function layout({
-  children, // will be a page or nested layout
-}: {
-  children: React.ReactNode;
-}) {
-  return <div> {children}</div>;
+import AdminSidebar from "@/components/Menubar/AdminSidebar/AdminSidebar";
+
+import { ReactNode } from "react";
+
+interface AdminLayoutProps {
+  children: ReactNode;
 }
+
+const AdminLayout = ({ children }: AdminLayoutProps) => {
+  return (
+    <div className="flex h-[88vh]  ">
+      <AdminSidebar />
+
+      <div className="flex-1 justify-center">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export default AdminLayout;
