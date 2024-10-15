@@ -105,7 +105,7 @@ console.log(res.status)
 
   return (
     <form
-      className="max-w-3xl bg-fuchsia-100 p-8 rounded-lg mx-auto"
+      className="max-w-3xl bg-fuchsia-100 p-8 rounded-lg mx-auto "
       onSubmit={handleSubmit}
     >
       <h2 className="text-2xl font-bold text-center mb-10">Add New Resource</h2>
