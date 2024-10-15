@@ -46,7 +46,6 @@ const CseNotesLayout = ({ children }: { children: React.ReactNode }) => {
     <div className={denkOne.className}>
       <Navbar/>
 
-      {/* <Navbar /> */}
       <div className={denkOne.className}>
         {/* Desktop Sidebar */}
         <div className="sm:flex hidden justify-between h-screen-minus-5 mt-6 rounded-xl">
