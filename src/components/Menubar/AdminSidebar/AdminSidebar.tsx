@@ -1,34 +1,65 @@
+"use client";
 
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const AdminSidebar = () => {
+  const router = useRouter();
+
+  const user = {
+    name: "Admin User", 
+    role: "Admin",
+  };
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/api/auth/log-out", { method: "GET" });
+      if (res.status === 200) {
+        router.replace("/login");
+      } else {
+        console.error("Failed to log out");
+      }
+    } catch (error) {
+      console.error("Logout Error:", error);
+    }
+  };
+
+  const menuItems = [
+    { name: "Add Note", path: "/admin/add-note" },
+    { name: "Add User", path: "/admin/add-user" },
+    { name: "View Notes", path: "/admin/view-note" },
+  ];
+
   return (
-    <div className="  text-black text-2xl font-bold  p-6">
-      <nav>
-        <ul className="space-y-4">
-          {/* <li>
-            <Link href="/" className="hover:text-fuchsia-300">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/add-year-semester" className="hover:text-fuchsia-300">
-              Add Year & Semester
-            </Link>
-          </li>
-          <li>
-            <Link href="/add-branch" className="hover:text-fuchsia-300">
-              Add Branch
-            </Link>
-          </li> */}
-          <li>
-            <Link href="/login/admin/add-note" className="hover:underline">
-              Add Note
-            </Link>
-          </li>
+    <aside className="w-64 bg-gray-800 text-white ">
+
+      <div className="p-4 border-b border-gray-700">
+        <p className="text-lg font-semibold">{user.name}</p>
+        <p className="text-sm text-gray-400">{user.role}</p>
+      </div>
+
+      <nav className="mt-4">
+        <ul>
+          {menuItems.map((item) => (
+            <li key={item.path} className="mb-2">
+              <Link className="block px-4 py-2 hover:bg-gray-700" href={item.path}>
+{item.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
-    </div>
+
+      <div className="absolute bottom-12 w-full p-4">
+        <button
+          onClick={handleLogout}
+          className="w-20 px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700"
+        >
+          Logout
+        </button>
+      </div>
+    </aside>
   );
 };
 
