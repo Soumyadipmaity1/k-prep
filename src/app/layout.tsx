@@ -3,8 +3,8 @@
 import type { Metadata } from "next";
 import { Denk_One } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Menubar/Navbar/Navbar";
-import Footer from "@/components/Footer/footer";
+// import Navbar from "@/components/Menubar/Navbar/Navbar";
+// import Footer from "@/components/Footer/footer";
 import { Toaster } from "react-hot-toast";
 const denkOne = Denk_One({ subsets: ["latin"], weight: "400" });
 
