@@ -32,7 +32,7 @@ const AdminSidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-gray-800 text-white ">
+    <aside className="w-64 bg-fuchsia-800 rounded-xl text-white ">
 
       <div className="p-4 border-b border-gray-700">
         <p className="text-lg font-semibold">{user.name}</p>
@@ -43,7 +43,7 @@ const AdminSidebar = () => {
         <ul>
           {menuItems.map((item) => (
             <li key={item.path} className="mb-2">
-              <Link className="block px-4 py-2 hover:bg-gray-700" href={item.path}>
+              <Link className="block px-4 py-2 hover:bg-fuchsia-500" href={item.path}>
 {item.name}
               </Link>
             </li>
