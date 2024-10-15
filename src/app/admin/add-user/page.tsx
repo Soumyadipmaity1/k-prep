@@ -32,7 +32,7 @@ const AddUser = () => {
             name="name"
             value={formData.name}
             onChange={handleInputChange}
-            className="mt-1 block w-full border-gray-600 border rounded-md"
+            className="mt-1 block w-full border-gray-600 border rounded-md py-2 px-3"
             required
           />
         </div>
@@ -44,7 +44,7 @@ const AddUser = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className="mt-1 block w-full border-gray-600 border rounded-md"
+            className="mt-1 block w-full border-gray-600 border rounded-md py-2 px-3"
             required
           />
         </div>
@@ -55,7 +55,7 @@ const AddUser = () => {
             name="role"
             value={formData.role}
             onChange={handleInputChange}
-            className="mt-1 block w-full border-gray-600 border rounded-md"
+            className="mt-1 block w-full border-gray-600 border rounded-md py-2 px-3"
           >
             <option value="admin">Admin</option>
             <option value="moderator">Moderator</option>
