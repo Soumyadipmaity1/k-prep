@@ -1,30 +1,46 @@
 "use client";
 
 import { ObjectId } from "mongoose";
-import React, { useEffect, useState } from "react";
-import { MdDeleteOutline } from "react-icons/md";
-import { MdOutlineEdit } from "react-icons/md";
-import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import toast from "react-hot-toast";
+
 function ShowNotes() {
-  const [notes, setNotes] = useState<any>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const queryClient = useQueryClient();
+
+  // Fetching notes
   const { isLoading, isError, data } = useQuery({
     queryKey: ["notes"],
-    queryFn: () => {
-      return axios.get("/api/note/view-note");
+    queryFn: () => axios.get("/api/note/view-note").then((res) => res.data),
+  });
+
+  // Mutation for deleting a note
+  const deleteNoteMutation = useMutation({
+    mutationFn: (id: ObjectId) => {
+      return axios.delete(`/api/note/delete-note?id=${id}`);
+    },
+    onSuccess: () => {
+      // Invalidate the "notes" query to refetch the updated list
+      queryClient.invalidateQueries();
+      toast.success("Note deleted successfully");
+    },
+    onError: () => {
+      toast.error("Error deleting note");
     },
   });
-  
-  
+
+  // Handle delete button click
+  const handleDeleteNote = (id: ObjectId) => {
+    if (window.confirm("Are you sure you want to delete this note?")) {
+      deleteNoteMutation.mutate(id);
+      // console.log(id)
+    }
+  };
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error}</div>;
-
-  const handleDeleteNote = async (id: ObjectId) => {
-    // const res = await
-  };
+  if (isError) return <div>Error loading notes</div>;
 
   return (
     <div className="relative overflow-x-auto mt-4">
@@ -49,8 +65,8 @@ function ShowNotes() {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.notes.length > 0 ? (
-            data?.data?.notes.map((note: any) => (
+          {data?.notes?.length > 0 ? (
+            data.notes.map((note: any) => (
               <tr
                 key={note.id}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
@@ -69,14 +85,14 @@ function ShowNotes() {
                   </button>
                 </td>
                 <td className="px-6 py-4">
-                  <div className="flex gap-2 ">
-                    <button
-                      onClick={() => handleDeleteNote(note?._id)}
-                      className="text-blue-500 hover:underline"
-                    >
+                  <div className="flex gap-2">
+                    <button className="text-blue-500 hover:underline">
                       <MdOutlineEdit size={20} />
                     </button>
-                    <button className="text-blue-500 hover:underline">
+                    <button
+                      onClick={() => handleDeleteNote(note._id)}
+                      className="text-blue-500 hover:underline"
+                    >
                       <MdDeleteOutline size={20} />
                     </button>
                   </div>
