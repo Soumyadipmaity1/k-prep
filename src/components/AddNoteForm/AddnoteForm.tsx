@@ -31,7 +31,7 @@ const AddNoteForm: React.FC = () => {
         try {
           const res = await axios.get(`/api/note/view-note?id=${id}`);
    
-          console.log(res)
+          // console.log(res)
   
           const note = res.data.notes;
           setResourceTitle(note.resourcestitle);
