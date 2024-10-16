@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 type CardProps = {
   subjectFullName: string;
   description: string;
-  code: string;
+  subjectcode: string;
   credit: number;
   pdfUrl: string;
 };
@@ -14,7 +14,7 @@ type CardProps = {
 const Card: React.FC<CardProps> = ({
   subjectFullName,
   description,
-  code,
+  subjectcode,
   credit,
   pdfUrl,
 }) => {
@@ -43,7 +43,7 @@ const Card: React.FC<CardProps> = ({
         </h2>
         <p className="text-white sm:text-base text-[15px]">{description}</p>
         <div className="sm:mt-4 mt-2">
-          <p className="text-white">Code: {code}</p>
+          <p className="text-white">Code: {subjectcode}</p>
           <p className="text-white">Credit: {credit}</p>
           <a
             href={pdfUrl}
@@ -110,7 +110,7 @@ const ThirdSemSubject = ({ year, sem }: { year: number; sem: number }) => {
             key={index}
             subjectFullName={data.subjectFullName}
             description={data.description}
-            code={data.code}
+            subjectcode={data.subjectcode}
             credit={data.credit}
             pdfUrl={data.pdfUrl}
           />
