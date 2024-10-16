@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
+import { MdDeleteOutline } from "react-icons/md";
+import { MdOutlineEdit } from "react-icons/md";
 function ShowNotes() {
   const [notes, setNotes] = useState<any>([]);
   const [loading, setLoading] = useState(true);
@@ -74,9 +75,14 @@ function ShowNotes() {
                   </button>
                 </td>
                 <td className="px-6 py-4">
-                  <button className="text-blue-500 hover:underline">
-                    View
-                  </button>
+                  <div className="flex gap-2 ">
+                    <button className="text-blue-500 hover:underline">
+                      <MdOutlineEdit size={20} />
+                    </button>
+                    <button className="text-blue-500 hover:underline">
+                      <MdDeleteOutline size={20} />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))
