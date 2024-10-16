@@ -4,48 +4,27 @@ import { ObjectId } from "mongoose";
 import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 function ShowNotes() {
   const [notes, setNotes] = useState<any>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { isLoading, isError, data } = useQuery({
-    queryKey: ['notes'],
-    queryFn: ()=>{
-      return axios.post("/api/note/view-note");
+    queryKey: ["notes"],
+    queryFn: () => {
+      return axios.get("/api/note/view-note");
     },
-  })
-  console.log(data)
-  useEffect(() => {
-    const fetchNotes = async () => {
-      try {
-        const response = await fetch("/api/note/view-note"); // Adjust this URL to your API endpoint
-        // console.log(response)
-        if (response.status != 200) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        console.log(data.notes);
-        setNotes(data.notes);
-      } catch (error: any) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  });
+  
+  
 
-    fetchNotes();
-  }, []);
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error}</div>;
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-
-  const handleDeleteNote= async (id:ObjectId)=>{
-    // const res = await 
-  }
-
+  const handleDeleteNote = async (id: ObjectId) => {
+    // const res = await
+  };
 
   return (
     <div className="relative overflow-x-auto mt-4">
@@ -70,8 +49,8 @@ function ShowNotes() {
           </tr>
         </thead>
         <tbody>
-          {notes.length > 0 ? (
-            notes.map((note: any) => (
+          {data?.data?.notes.length > 0 ? (
+            data?.data?.notes.map((note: any) => (
               <tr
                 key={note.id}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
@@ -91,7 +70,10 @@ function ShowNotes() {
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex gap-2 ">
-                    <button onClick={()=>handleDeleteNote(note?._id)} className="text-blue-500 hover:underline">
+                    <button
+                      onClick={() => handleDeleteNote(note?._id)}
+                      className="text-blue-500 hover:underline"
+                    >
                       <MdOutlineEdit size={20} />
                     </button>
                     <button className="text-blue-500 hover:underline">
