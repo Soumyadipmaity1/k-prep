@@ -54,7 +54,9 @@ export async function GET(request: NextRequest) {
         }
       );
     } else {
-      const notes = await Resource.find().select("subjectFullname year semister");
+      const notes = await Resource.find()
+        .select("subjectFullname year semister")
+        .sort({ createdAt: -1 });
 
       return NextResponse.json(
         {
