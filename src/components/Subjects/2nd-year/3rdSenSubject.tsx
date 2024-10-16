@@ -63,7 +63,11 @@ const fetchNotes = async (
   year: number,
   sem: number | string
 ): Promise<CardProps[]> => {
-  const response = await fetch(`/api/note/view-note?year=${year}&scheme=${sem}`);
+  const url =
+    typeof sem === "string"
+      ? `/api/note/view-note?year=${year}&scheme=${sem}`
+      : `/api/note/view-note?year=${year}&sem=${sem}`;
+  const response = await fetch(url);
   // console.log(response)
   if (!response.ok) {
     throw new Error("Failed to fetch notes");
