@@ -10,6 +10,7 @@ interface IResource {
   subjectcode: string;
   year: string;
   semister: string;
+  scheme: string;
 }
 
 // Define Mongoose Schema
@@ -46,6 +47,10 @@ const ResourceSchema = new Schema<IResource>(
     semister: {
       type: String,
       required: [true, "Please specify the semester."],
+    },
+    scheme: {
+      type: String,
+      required: false,
     },
   },
   {
