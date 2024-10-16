@@ -59,8 +59,11 @@ const Card: React.FC<CardProps> = ({
   );
 };
 
-const fetchNotes = async (year: number, sem: number): Promise<CardProps[]> => {
-  const response = await fetch(`/api/note/view-note?year=${year}&sem=${sem}`);
+const fetchNotes = async (
+  year: number,
+  sem: number | string
+): Promise<CardProps[]> => {
+  const response = await fetch(`/api/note/view-note?year=${year}&scheme=${sem}`);
   // console.log(response)
   if (!response.ok) {
     throw new Error("Failed to fetch notes");
@@ -70,7 +73,13 @@ const fetchNotes = async (year: number, sem: number): Promise<CardProps[]> => {
   return data.notes;
 };
 
-const ThirdSemSubject = ({ year, sem }: { year: number; sem: number }) => {
+const ThirdSemSubject = ({
+  year,
+  sem,
+}: {
+  year: number;
+  sem: number | string;
+}) => {
   const [notes, setNotes] = useState<CardProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

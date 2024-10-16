@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
       subjectcode,
       year,
       semister,
+      scheme,
     } = await request.json();
     if (
       !subjectFullname ||
@@ -36,6 +37,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    
     // Create and save new resource document
     const newResource = new Resource({
       subjectFullname,
@@ -46,6 +48,7 @@ export async function POST(request: NextRequest) {
       subjectcode,
       year,
       semister,
+      scheme,
     });
 
     await newResource.save();

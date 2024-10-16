@@ -11,7 +11,22 @@ export async function GET(request: NextRequest) {
     // console.log(searchParams);
     let year = searchParams.get("year");
     let sem = searchParams.get("sem");
-    if (year && sem) {
+    let scheme = searchParams.get("scheme");
+    if (year && scheme) {
+      const notes = await Resource.find({
+        year: year,
+        scheme: scheme,
+      });
+      return NextResponse.json(
+        {
+          success: true,
+          notes,
+        },
+        {
+          status: 200,
+        }
+      );
+    } else if (year && sem) {
       const notes = await Resource.find({
         year: year,
         semister: new RegExp(sem),
