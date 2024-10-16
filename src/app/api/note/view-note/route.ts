@@ -7,6 +7,8 @@ connect();
 
 export async function GET(request: NextRequest) {
   try {
+    const { searchParams } = new URL(request.url);
+    console.log(searchParams.get("year"));
     const notes = await Resource.find();
 
     return NextResponse.json(
