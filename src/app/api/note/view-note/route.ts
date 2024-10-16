@@ -8,8 +8,24 @@ connect();
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    if (searchParams.get("year")) {
-      let year = searchParams.get("year");
+    // console.log(searchParams);
+    let year = searchParams.get("year");
+    let sem = searchParams.get("sem");
+    if (year && sem) {
+      const notes = await Resource.find({
+        year: year,
+        semister: new RegExp(sem),
+      });
+      return NextResponse.json(
+        {
+          success: true,
+          notes,
+        },
+        {
+          status: 200,
+        }
+      );
+    } else if (year) {
       const notes = await Resource.find({
         year: year,
       });

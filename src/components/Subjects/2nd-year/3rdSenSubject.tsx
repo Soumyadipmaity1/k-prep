@@ -11,7 +11,13 @@ type CardProps = {
   pdfUrl: string;
 };
 
-const Card: React.FC<CardProps> = ({ subjectFullName, description, code, credit, pdfUrl }) => {
+const Card: React.FC<CardProps> = ({
+  subjectFullName,
+  description,
+  code,
+  credit,
+  pdfUrl,
+}) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -32,12 +38,19 @@ const Card: React.FC<CardProps> = ({ subjectFullName, description, code, credit,
         </div>
       </div>
       <div className="text-start px-4">
-        <h2 className="sm:text-2xl text-xl font-bold text-white">{subjectFullName}</h2>
+        <h2 className="sm:text-2xl text-xl font-bold text-white">
+          {subjectFullName}
+        </h2>
         <p className="text-white sm:text-base text-[15px]">{description}</p>
         <div className="sm:mt-4 mt-2">
           <p className="text-white">Code: {code}</p>
           <p className="text-white">Credit: {credit}</p>
-          <a href={pdfUrl} className="text-blue-300 underline" target="_blank" rel="noopener noreferrer">
+          <a
+            href={pdfUrl}
+            className="text-blue-300 underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             View Notes
           </a>
         </div>
@@ -47,9 +60,7 @@ const Card: React.FC<CardProps> = ({ subjectFullName, description, code, credit,
 };
 
 const fetchNotes = async (year: number, sem: number): Promise<CardProps[]> => {
-  const response = await fetch(
-    `http://localhost:5000/api/v1/notes/get_note/${year}/${sem}`
-  );
+  const response = await fetch(`/api/note/view-note?year=${year}&sem=${sem}`);
   // console.log(response)
   if (!response.ok) {
     throw new Error("Failed to fetch notes");
@@ -90,7 +101,7 @@ const ThirdSemSubject = ({ year, sem }: { year: number; sem: number }) => {
   if (error) {
     return <p>{error}</p>;
   }
-console.log("Hello",notes)
+  console.log("Hello", notes);
   return (
     <div className="flex flex-wrap justify-center items-center">
       {notes && notes.length > 0 ? (
