@@ -5,6 +5,7 @@ interface IUser {
   lastName: string;
   email: string;
   password: string;
+  role: string;
 }
 
 const userSchema = new Schema<IUser>({
@@ -12,6 +13,7 @@ const userSchema = new Schema<IUser>({
   lastName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  role: { type: String, required: true, default: "moderator" },
 });
 
 // Check if the model is already created to prevent overwriting issues in Next.js's hot-reload
