@@ -44,7 +44,7 @@ interface Note {
 }
 
 const fetchNotes = async (year: number): Promise<Note[]> => {
-  const response = await fetch(`http://localhost:5000/api/v1/notes/get_note/${year}`);
+  const response = await fetch(`/api/note/view-note?year=${year}`);
   if (!response.ok) {
     throw new Error("Failed to fetch notes");
   }
@@ -80,7 +80,7 @@ const Home = ({year}:{year:number}) => {
         <main className="flex space-x-4">
           {loading && <p>Loading...</p>}
           {/* {error && <p>{error}</p>} */}
-          {notes.length===0?"No Record":notes.slice(0,2).map((item, index) => (
+          {notes.length===0?"No Record":notes.slice(0,3).map((item, index) => (
             <Card
               key={index}
               title={item.subjectFullName}
