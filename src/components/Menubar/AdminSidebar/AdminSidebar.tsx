@@ -35,6 +35,8 @@ const AdminSidebar = () => {
     { name: "Add Note", path: "/admin/add-note" },
     { name: "Add User", path: "/admin/add-user" },
     { name: "View Notes", path: "/admin/view-note" },
+    { name: "Profile", path: "/admin/view-profile" },
+
   ];
 
   return (
