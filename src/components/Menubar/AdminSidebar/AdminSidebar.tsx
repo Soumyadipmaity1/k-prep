@@ -1,28 +1,31 @@
 "use client";
 
-import React from "react";
+// import React { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import DialogBox from "@/components/Dialogs/Dialogs";
+import { useState } from "react";
 
 const AdminSidebar = () => {
   const router = useRouter();
-
+  const [showDialog, setShowDialog] = useState(false);
   const user = {
     name: "Admin User",
     role: "Admin",
   };
 
   const handleLogout = async () => {
-    try {
-      const res = await fetch("/api/auth/log-out", { method: "GET" });
-      if (res.status === 200) {
-        router.replace("/login");
-      } else {
-        console.error("Failed to log out");
-      }
-    } catch (error) {
-      console.error("Logout Error:", error);
-    }
+    setShowDialog(true);
+    // try {
+    //   const res = await fetch("/api/auth/log-out", { method: "GET" });
+    //   if (res.status === 200) {
+    //     router.replace("/login");
+    //   } else {
+    //     console.error("Failed to log out");
+    //   }
+    // } catch (error) {
+    //   console.error("Logout Error:", error);
+    // }
   };
 
   const path = usePathname();
@@ -66,6 +69,7 @@ const AdminSidebar = () => {
           Logout
         </button>
       </div>
+      <DialogBox title="Hello" text="This is test message" isOpen={showDialog} />
     </aside>
   );
 };

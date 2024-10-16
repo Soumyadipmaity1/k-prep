@@ -11,7 +11,7 @@ interface AdminLayoutProps {
 
 const AdminLayout = ({ children }: AdminLayoutProps) => {
   return (
-    <div className="flex h-[88vh] overflow-y-hidden  ">
+    <div className="flex h-auto overflow-y-hidden  ">
       <AdminSidebar />
 
       <div className="flex-1 justify-center">
