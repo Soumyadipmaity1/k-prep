@@ -21,11 +21,30 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    await Resource.findByIdAndDelete(getId);
+    // Parse the JSON body for the updated note data
+    const body = await request.json();
+
+    // Find the resource by id and update it with the new data
+    const updatedResource = await Resource.findByIdAndUpdate(getId, body, {
+      new: true, // Return the updated document
+      runValidators: true, // Ensure the updated data is validated against the schema
+    });
+
+    if (!updatedResource) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Note not found",
+        },
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json(
       {
         success: true,
-        message: "Notes deleted successfully",
+        message: "Notes updated successfully",
+        data: updatedResource,
       },
       { status: 200 }
     );
@@ -34,7 +53,7 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message: `Failed to add resource: ${error.message}`,
+        message: `Failed to update resource: ${error.message}`,
       },
       { status: 400 }
     );

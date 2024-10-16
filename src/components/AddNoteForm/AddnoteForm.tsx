@@ -1,11 +1,10 @@
 "use client";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import toast from "react-hot-toast";
 import ScaleLoader from "react-spinners/ScaleLoader";
-// import isAuthenticated
-// import { isAuthenticated } from "./../../lib/Auth";
-// import { redirect } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import axios from "axios";
+
 const AddNoteForm: React.FC = () => {
   const [isDisable, setIsDisable] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,10 +19,39 @@ const AddNoteForm: React.FC = () => {
   const [subjectcode, setSubjectCode] = useState<string>("");
   const [semister, setSemester] = useState<string>("");
   const [pdflink, setPdfLink] = useState<string>("");
+
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const params = useSearchParams();
   const id = params.get("id");
+
+  useEffect(() => {
+    // If updating a note, fetch its data and populate the form fields
+    if (id) {
+      const fetchNote = async () => {
+        try {
+          const res = await axios.get(`/api/note/view-note?id=${id}`);
+   
+          console.log(res)
+  
+          const note = res.data.notes;
+          setResourceTitle(note.resourcestitle);
+          setSubjectFullName(note.subjectFullname);
+          setSubjectShortName(note.subjectsortname);
+          setCredit(note.credit);
+          setSubjectCode(note.subjectcode);
+          setYear(note.year);
+          setSemester(note.semister);
+          setPdfLink(note.pdflink);
+          handleYearChange(note.year); // Update semester options based on year
+        } catch (error) {
+          console.error("Error fetching note:", error);
+          toast.error("Failed to load note data");
+        }
+      };
+      fetchNote();
+    }
+  }, [id]);
+
   const handleYearChange = (selectedYear: string) => {
     setYear(selectedYear);
     switch (selectedYear) {
@@ -58,45 +86,65 @@ const AddNoteForm: React.FC = () => {
     e.preventDefault();
     setIsDisable(true);
     setLoading(true);
+
     if (!validateForm()) {
       alert("Please fill in all fields.");
+      setIsDisable(false);
+      setLoading(false);
       return;
     }
 
     try {
-      const res = await fetch("/api/note/add-note", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          resourcestitle, // matches API field name
-          subjectFullname, // matches API field name
-          subjectsortname, // matches API field name
-          credit, // matches API field name
-          subjectcode, // matches API field name
-          year, // matches API field name
-          semister, // matches API field name
-          pdflink, // matches API field name
-        }),
-      });
+      const payload = {
+        resourcestitle,
+        subjectFullname,
+        subjectsortname,
+        credit,
+        subjectcode,
+        year,
+        semister,
+        pdflink,
+      };
+
+      let res;
+      if (id) {
+        // Update existing note
+        res = await fetch(`/api/note/update-note?id=${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+      } else {
+        // Add new note
+        res = await fetch("/api/note/add-note", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+      }
 
       const data = await res.json();
-      // console.log(res.status);
 
-      if (res.status === 201) {
-        toast.success("Data saved successfully");
-
-        // Reset form fields
-        setResourceTitle("");
-        setSubjectFullName("");
-        setSubjectShortName("");
-        setCredit("");
-        setSubjectCode("");
-        setYear("");
-        setSemester("");
-        setPdfLink("");
-        setSemesterOptions([]);
+      if (res.ok) {
+        toast.success(
+          id ? "Note updated successfully" : "Note added successfully"
+        );
+        if (!id) {
+          // Reset form fields after adding a new note
+          setResourceTitle("");
+          setSubjectFullName("");
+          setSubjectShortName("");
+          setCredit("");
+          setSubjectCode("");
+          setYear("");
+          setSemester("");
+          setPdfLink("");
+          setSemesterOptions([]);
+        }
       } else {
         setError(data.message);
         toast.error(data.message); // Show error from API
@@ -114,7 +162,9 @@ const AddNoteForm: React.FC = () => {
       className="max-w-3xl bg-fuchsia-100 p-8 rounded-lg mx-auto"
       onSubmit={handleSubmit}
     >
-      <h2 className="text-2xl font-bold text-center mb-10">{id?"Update":"Add New"} Resource</h2>
+      <h2 className="text-2xl font-bold text-center mb-10">
+        {id ? "Update" : "Add New"} Resource
+      </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Resource Title */}
@@ -279,6 +329,8 @@ const AddNoteForm: React.FC = () => {
         >
           {loading ? (
             <ScaleLoader color="white" width={5} height={10} />
+          ) : id ? (
+            "Update Note"
           ) : (
             "Add Note"
           )}

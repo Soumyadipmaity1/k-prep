@@ -12,6 +12,7 @@ export async function GET(request: NextRequest) {
     let year = searchParams.get("year");
     let sem = searchParams.get("sem");
     let scheme = searchParams.get("scheme");
+    let id = searchParams.get("id");
     if (year && scheme) {
       const notes = await Resource.find({
         year: year,
@@ -47,6 +48,16 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         {
           success: true,
+          notes,
+        },
+        {
+          status: 200,
+        }
+      );
+    } else if (id) {
+      const notes = await Resource.findById(id);
+      return NextResponse.json(
+        {
           notes,
         },
         {
