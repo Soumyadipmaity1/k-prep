@@ -1,13 +1,22 @@
 "use client";
 
+import { ObjectId } from "mongoose";
 import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
+import { useQuery } from '@tanstack/react-query';
+import axios from "axios";
 function ShowNotes() {
   const [notes, setNotes] = useState<any>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ['notes'],
+    queryFn: ()=>{
+      return axios.post("/api/note/view-note");
+    },
+  })
+  console.log(data)
   useEffect(() => {
     const fetchNotes = async () => {
       try {
@@ -31,6 +40,12 @@ function ShowNotes() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+
+
+  const handleDeleteNote= async (id:ObjectId)=>{
+    // const res = await 
+  }
+
 
   return (
     <div className="relative overflow-x-auto mt-4">
@@ -76,7 +91,7 @@ function ShowNotes() {
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex gap-2 ">
-                    <button className="text-blue-500 hover:underline">
+                    <button onClick={()=>handleDeleteNote(note?._id)} className="text-blue-500 hover:underline">
                       <MdOutlineEdit size={20} />
                     </button>
                     <button className="text-blue-500 hover:underline">
