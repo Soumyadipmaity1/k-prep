@@ -15,17 +15,17 @@ const AdminSidebar = () => {
   };
 
   const handleLogout = async () => {
-    setShowDialog(true);
-    // try {
-    //   const res = await fetch("/api/auth/log-out", { method: "GET" });
-    //   if (res.status === 200) {
-    //     router.replace("/login");
-    //   } else {
-    //     console.error("Failed to log out");
-    //   }
-    // } catch (error) {
-    //   console.error("Logout Error:", error);
-    // }
+    // setShowDialog(true);
+    try {
+      const res = await fetch("/api/auth/log-out", { method: "GET" });
+      if (res.status === 200) {
+        router.replace("/login");
+      } else {
+        console.error("Failed to log out");
+      }
+    } catch (error) {
+      console.error("Logout Error:", error);
+    }
   };
 
   const path = usePathname();
@@ -69,7 +69,7 @@ const AdminSidebar = () => {
           Logout
         </button>
       </div>
-      <DialogBox title="Hello" text="This is test message" isOpen={showDialog} />
+      {/* <DialogBox title="Hello" text="This is test message" isOpen={showDialog} /> */}
     </aside>
   );
 };
