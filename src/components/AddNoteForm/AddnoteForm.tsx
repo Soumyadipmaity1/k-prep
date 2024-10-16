@@ -5,6 +5,7 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 // import isAuthenticated
 // import { isAuthenticated } from "./../../lib/Auth";
 // import { redirect } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 const AddNoteForm: React.FC = () => {
   const [isDisable, setIsDisable] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,8 @@ const AddNoteForm: React.FC = () => {
   const [pdflink, setPdfLink] = useState<string>("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+  const params = useSearchParams();
+  const id = params.get("id");
   const handleYearChange = (selectedYear: string) => {
     setYear(selectedYear);
     switch (selectedYear) {
@@ -112,7 +114,7 @@ const AddNoteForm: React.FC = () => {
       className="max-w-3xl bg-fuchsia-100 p-8 rounded-lg mx-auto"
       onSubmit={handleSubmit}
     >
-      <h2 className="text-2xl font-bold text-center mb-10">Add New Resource</h2>
+      <h2 className="text-2xl font-bold text-center mb-10">{id?"Update":"Add New"} Resource</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Resource Title */}
@@ -121,7 +123,7 @@ const AddNoteForm: React.FC = () => {
             Resources Title:
           </label>
           <input
-           disabled={isDisable}
+            disabled={isDisable}
             type="text"
             className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             placeholder="Enter Resources Title"
@@ -138,7 +140,7 @@ const AddNoteForm: React.FC = () => {
             Subject Full Name:
           </label>
           <input
-           disabled={isDisable}
+            disabled={isDisable}
             type="text"
             className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             placeholder="Enter Subject Full Name"
@@ -155,7 +157,7 @@ const AddNoteForm: React.FC = () => {
             Subject Short Name:
           </label>
           <input
-           disabled={isDisable}
+            disabled={isDisable}
             type="text"
             className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             placeholder="Enter Short Form"
@@ -172,7 +174,7 @@ const AddNoteForm: React.FC = () => {
             Credit:
           </label>
           <select
-           disabled={isDisable}
+            disabled={isDisable}
             title="Select Credit"
             className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             value={credit}
@@ -195,7 +197,7 @@ const AddNoteForm: React.FC = () => {
             Subject Code:
           </label>
           <input
-           disabled={isDisable}
+            disabled={isDisable}
             type="text"
             className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             placeholder="Enter Subject Code"

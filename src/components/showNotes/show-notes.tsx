@@ -6,10 +6,10 @@ import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import { useRouter } from "next/navigation";
 function ShowNotes() {
   const queryClient = useQueryClient();
-
+  const router = useRouter();
   // Fetching notes
   const { isLoading, isError, data } = useQuery({
     queryKey: ["notes"],
@@ -86,7 +86,12 @@ function ShowNotes() {
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex gap-2">
-                    <button className="text-blue-500 hover:underline">
+                    <button
+                      onClick={() =>
+                        router.push(`/admin/add-note?id=${note._id}`)
+                      }
+                      className="text-blue-500 hover:underline"
+                    >
                       <MdOutlineEdit size={20} />
                     </button>
                     <button
