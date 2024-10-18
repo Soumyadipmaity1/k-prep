@@ -6,10 +6,6 @@ import bcrypt from "bcryptjs";
 import GitHubProvider from "next-auth/providers/github";
 export const authOptions: NextAuthOptions = {
   providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
-    }),
     CredentialsProvider({
       name: "Credentials",
       id: "credentials",
@@ -18,7 +14,7 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials: any): Promise<any> {
-        await connect();
+        // await connect();
 
         try {
           console.log(credentials);
@@ -70,3 +66,6 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.TOKEN_SECRET,
 };
+
+
+
