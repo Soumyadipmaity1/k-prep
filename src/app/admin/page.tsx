@@ -7,7 +7,7 @@ const AdminDashboard = () => {
   const router = useRouter();
   const { data: session, status } = useSession()
 
- console.log(session)
+ console.log("--------->",session)
   return (
     <div className="flex ">
       <div className="flex-1 p-6 ">

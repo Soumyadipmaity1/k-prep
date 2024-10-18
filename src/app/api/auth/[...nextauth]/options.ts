@@ -69,7 +69,7 @@ export const authOptions: NextAuthOptions = {
         token._id = user.id?.toString();
         token.email = user.email;
         token.role = user.role;
-        token.name = user.name;
+        token.firstName = user.firstName;
       }
 
       return token;
@@ -79,7 +79,7 @@ export const authOptions: NextAuthOptions = {
         session.user._id = token._id;
         session.user.email = token.email;
         session.user.role = token.role;
-        session.user.name = token.name;
+        session.user.firstName = token.firstName;
       }
       return session;
     },
