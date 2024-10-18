@@ -45,7 +45,7 @@ function Page() {
       });
 
       setSuccess(response.data.message); // Success message from server
-    } catch (error) {
+    } catch (error:any) {
       console.error("Error changing password:", error);
       setError(error.response?.data?.error || "An error occurred");
     }
