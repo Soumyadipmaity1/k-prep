@@ -2,12 +2,12 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-
+import { useSession } from "next-auth/react"
 const AdminDashboard = () => {
   const router = useRouter();
+  const { data: session, status } = useSession()
 
-
-
+ console.log(session)
   return (
     <div className="flex ">
       <div className="flex-1 p-6 ">

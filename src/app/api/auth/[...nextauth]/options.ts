@@ -1,9 +1,11 @@
-// import 
+// import
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 // import User from "@/models/userModel";
 import bcrypt from "bcryptjs";
-import GitHubProvider from "next-auth/providers/github";
+import User from "@/models/user.model";
+import { connect } from "@/config/dbConnect";
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -14,13 +16,14 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials: any): Promise<any> {
-        // await connect();
+        await connect();
 
         try {
           console.log(credentials);
           const user = await User.findOne({ email: credentials.email });
           // const users = await User.find();
           // console.log(user,users);
+          console.log(user)
           if (!user) {
             throw new Error("User not found");
           }
@@ -48,24 +51,38 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async signIn({ user }) {
+      console.log("Test")
+      const isAllowedToSignIn = true;
+      if (isAllowedToSignIn) {
+
+        return true;
+      } else {
+        // Return false to display a default error message
+        return false;
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+      }
+    },
+    async jwt({ token, user }: { token: any; user: any }) {
       if (user) {
         token._id = user.id?.toString();
         token.email = user.email;
+        token.role = user.role;
+        token.name = user.name;
       }
 
       return token;
     },
-    async session({ session, user, token }) {
+    async session({ session, token }: { session: any; token: any }) {
       if (token) {
         session.user._id = token._id;
         session.user.email = token.email;
+        session.user.role = token.role;
+        session.user.name = token.name;
       }
       return session;
     },
   },
   secret: process.env.TOKEN_SECRET,
 };
-
-
-

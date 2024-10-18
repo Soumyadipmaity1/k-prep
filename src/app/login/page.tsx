@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useRouter, redirect } from "next/navigation";
 // import isAuthenticated
 import { isAuthenticated } from "./../../lib/Auth";
+import { signIn } from "next-auth/react";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,32 +23,36 @@ const LoginPage = () => {
     e.preventDefault();
     setIsDisable(true);
     setLoading(true);
+
+    // Validate input fields
     if (!email || !password) {
-      // alert("Please fill your email & password");
       toast.error("Please fill your email & password");
-      return; // Return early if fields are empty
+      setIsDisable(false);
+      setLoading(false);
+      return;
     }
 
     try {
-      const res = await fetch(`/api/auth/sign-in`, {
-        method: "POST", // Changed to POST for login
-        body: JSON.stringify({ email, password }),
+      // Using next-auth's signIn method with credentials
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false, // Avoid automatic redirect by next-auth
       });
-
-      const data = await res.json();
-      console.log(data);
-      if (res.status !== 200) {
-        setError(data?.message);
-        toast.error(error && error);
+      console.log(res);
+      if (res?.error) {
+        setError("Invalid credentials");
+        toast.error("Invalid credentials");
       } else {
-        setError("");
         setSuccess("Login successful");
-        router.push("/admin");
-        toast.success(success && success);
+        toast.success("Login successful");
+        router.push("/admin/add-note"); // Redirect to the admin page
       }
     } catch (error) {
       console.error("Error logging in:", error);
+      toast.error("An error occurred while logging in");
     }
+
     setIsDisable(false);
     setLoading(false);
   };
