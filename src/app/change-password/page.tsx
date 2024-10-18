@@ -39,13 +39,19 @@ function Page() {
     }
 
     try {
-      const response = await axios.post('/api/resetPassword', {
+      const response = await axios.post("/api/user/change-password", {
         token,
         newPassword,
       });
 
-      setSuccess(response.data.message); // Success message from server
-    } catch (error:any) {
+      if (response.status != 200) {
+      } else {
+        setSuccess(response.data.message);
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000);
+      }
+    } catch (error: any) {
       console.error("Error changing password:", error);
       setError(error.response?.data?.error || "An error occurred");
     }

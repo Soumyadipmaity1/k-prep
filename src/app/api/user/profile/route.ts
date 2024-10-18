@@ -30,5 +30,16 @@ export async function GET(request: NextRequest) {
         }
       );
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error changing password:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Server error, please try again.",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 }

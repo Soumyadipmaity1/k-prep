@@ -1,63 +1,76 @@
+// pages/api/changePassword.js
 import { connect } from "@/config/dbConnect";
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/user.model";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { sendPasswordResetEmail } from "@/lib/sendMail";
+
 connect();
 
 export async function POST(request: NextRequest) {
-  try {
-    const { firstName, lastName, email, role } = await request.json();
+  const { token, newPassword } = await request.json();
 
-    // Validate input data
-    if (!firstName || !lastName || !email) {
+  try {
+    // Validate input
+    if (!token || !newPassword) {
       return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
+        {
+          success: false,
+          message: "All fields are required.",
+        },
+        {
+          status: 400,
+        }
       );
     }
 
-    // Create user
-    const addUser = await User.create({
-      firstName,
-      lastName,
-      email,
-      role,
-    });
+    // Decode and verify the token
+    const decodedToken: any = jwt.verify(token, process.env.TOKEN_SECRET!);
+    console.log(decodedToken);
+    // Extract the email from the decoded token
+    const email: any = decodedToken?.data.email!;
 
-    const data = {
-      userId: addUser._id,
-      email: addUser.email,
-    };
+    // Find the user by email
+    const user = await User.findOne({ email });
 
-    const secret = process.env.TOKEN_SECRET;
-    const url = process.env.CLIENT_URL!;
-    if (!secret) {
-      console.error("TOKEN_SECRET is not defined.");
-      return NextResponse.json({ error: "Server error" }, { status: 500 });
+    if (!user) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "User not found.",
+        },
+        {
+          status: 404,
+        }
+      );
     }
-    const subject = "Change Your Password";
-    // Add expiration to token
-    const token = jwt.sign({ data }, secret, { expiresIn: "1h" });
-    const resetLink = `${url}/change-password?token=${token}`;
-    // const response = await fetch("/api/mail", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ email, subject, resetLink }),
-    // });
-    await sendPasswordResetEmail(email, subject, resetLink);
-    // const info = await response.json();
-    // if (info.ok) {
-    return NextResponse.json({ user: addUser, token }, { status: 201 });
-    // } else {
-    //   return NextResponse.json({ message: "Error" }, { status: 409 });
-    // }
 
-    // Return user data and token
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password
+    user.password = hashedPassword;
+    await user.save();
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Password changed successfully.",
+      },
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
-    console.error("Error creating user:", error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    console.error("Error changing password:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Invalid token or server error.",
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }

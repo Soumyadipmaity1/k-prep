@@ -75,8 +75,8 @@ export async function sendPasswordResetEmail(
     host: "sandbox.smtp.mailtrap.io", // Use your email provider's settings
     port: 2525,
     auth: {
-      user: "5d057c3fb0efee", // Your Mailtrap username
-      pass: "566e84f2fb6a02", // Your Mailtrap password
+      user: process.env.EMAIL_USERID, // Your Mailtrap username
+      pass: process.env.EMAIL_PWD, // Your Mailtrap password
     },
   });
 
