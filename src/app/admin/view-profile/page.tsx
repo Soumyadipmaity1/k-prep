@@ -76,9 +76,9 @@ const Profile: React.FC = () => {
         </div>
 
         <div className="mt-6 text-center">
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">
+          {/* <button className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">
             Edit Profile
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
