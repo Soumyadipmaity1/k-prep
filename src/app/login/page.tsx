@@ -46,7 +46,7 @@ const LoginPage = () => {
       } else {
         setSuccess("Login successful");
         toast.success("Login successful");
-        router.push("/admin/add-note"); // Redirect to the admin page
+        router.push("/admin"); // Redirect to the admin page
       }
     } catch (error) {
       console.error("Error logging in:", error);

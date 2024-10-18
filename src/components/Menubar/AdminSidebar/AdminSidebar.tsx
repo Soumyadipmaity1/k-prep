@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const AdminSidebar = () => {
   const router = useRouter();
@@ -18,16 +18,8 @@ const AdminSidebar = () => {
   };
 
   const handleLogout = async () => {
-    try {
-      const res = await fetch("/api/auth/log-out", { method: "GET" });
-      if (res.status === 200) {
-        router.replace("/login");
-      } else {
-        console.error("Failed to log out");
-      }
-    } catch (error) {
-      console.error("Logout Error:", error);
-    }
+ 
+    await signOut();
   };
 
   const path = usePathname();

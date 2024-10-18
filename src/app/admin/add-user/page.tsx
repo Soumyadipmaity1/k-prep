@@ -10,7 +10,8 @@ const AddUser = () => {
     router.push("/admin");
   }
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     role: "admin",
   });
@@ -26,7 +27,7 @@ const AddUser = () => {
     e.preventDefault();
     try {
       console.log("User added:", formData);
-      setFormData({ name: "", email: "", role: "admin" });
+      setFormData({ firstName: "", lastName: "", email: "", role: "admin" });
     } catch (error) {
       console.error("Error adding user:", error);
     }
@@ -47,7 +48,24 @@ const AddUser = () => {
             type="text"
             id="name"
             name="name"
-            value={formData.name}
+            value={formData.firstName}
+            onChange={handleInputChange}
+            className="mt-1 block w-full border-gray-600 border rounded-md py-2 px-3"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="name"
+            className="block  text-lg font-semibold text-fuchsia-800"
+          >
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.lastName}
             onChange={handleInputChange}
             className="mt-1 block w-full border-gray-600 border rounded-md py-2 px-3"
             required
