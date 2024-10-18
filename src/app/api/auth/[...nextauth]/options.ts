@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
           const user = await User.findOne({ email: credentials.email });
           // const users = await User.find();
           // console.log(user,users);
-          console.log(user)
+          console.log(user);
           if (!user) {
             throw new Error("User not found");
           }
@@ -52,10 +52,9 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async signIn({ user }) {
-      console.log("Test")
+      console.log("Test");
       const isAllowedToSignIn = true;
       if (isAllowedToSignIn) {
-
         return true;
       } else {
         // Return false to display a default error message
@@ -64,9 +63,9 @@ export const authOptions: NextAuthOptions = {
         // return '/unauthorized'
       }
     },
-    async jwt({ token, user }: { token: any; user: any }) {
+    async jwt({ token, user }) {
       if (user) {
-        token._id = user.id?.toString();
+        token.id = user._id?.toString();
         token.email = user.email;
         token.role = user.role;
         token.firstName = user.firstName;
@@ -76,7 +75,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }: { session: any; token: any }) {
       if (token) {
-        session.user._id = token._id;
+        session.user.id = token.id;
         session.user.email = token.email;
         session.user.role = token.role;
         session.user.firstName = token.firstName;

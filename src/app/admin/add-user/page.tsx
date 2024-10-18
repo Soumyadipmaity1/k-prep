@@ -1,11 +1,23 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import React, { useState } from "react";
-
+import { useRouter } from "next/navigation";
 const AddUser = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", role: "admin" });
+  const router = useRouter();
+  const { data: session } = useSession();
+  if (session?.user.role != "admin") {
+    router.push("/admin");
+  }
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    role: "admin",
+  });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -25,7 +37,12 @@ const AddUser = () => {
       <h2 className="text-2xl font-bold text-center my-4 mb-8 ">Add User</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="name" className="block  text-lg font-semibold text-fuchsia-800">Name</label>
+          <label
+            htmlFor="name"
+            className="block  text-lg font-semibold text-fuchsia-800"
+          >
+            Name
+          </label>
           <input
             type="text"
             id="name"
@@ -37,7 +54,12 @@ const AddUser = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-lg font-semibold text-fuchsia-800">Email</label>
+          <label
+            htmlFor="email"
+            className="block text-lg font-semibold text-fuchsia-800"
+          >
+            Email
+          </label>
           <input
             type="email"
             id="email"
@@ -49,7 +71,12 @@ const AddUser = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="role" className="block text-lg font-semibold text-fuchsia-800">Role</label>
+          <label
+            htmlFor="role"
+            className="block text-lg font-semibold text-fuchsia-800"
+          >
+            Role
+          </label>
           <select
             id="role"
             name="role"

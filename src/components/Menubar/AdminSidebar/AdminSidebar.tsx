@@ -1,21 +1,23 @@
 "use client";
 
-// import React { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import DialogBox from "@/components/Dialogs/Dialogs";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 const AdminSidebar = () => {
   const router = useRouter();
-  const [showDialog, setShowDialog] = useState(false);
+  const { data: session } = useSession();
+  // const { firstName, role }: { firstName: any; role: any } = session?.user || {};
+  let firstName = session?.user.firstName;
+  let role = session?.user?.role;
+
   const user = {
-    name: "Admin User",
-    role: "Admin",
+    name: firstName || "Admin", // Default to "Admin" if firstName is not available
+    role: role || "User", // Default to "User" if role is not available
   };
 
   const handleLogout = async () => {
-    // setShowDialog(true);
     try {
       const res = await fetch("/api/auth/log-out", { method: "GET" });
       if (res.status === 200) {
@@ -30,17 +32,24 @@ const AdminSidebar = () => {
 
   const path = usePathname();
 
-  const menuItems = [
-    { name: "Dashboard", path: "/admin" },
-    { name: "Add Note", path: "/admin/add-note" },
-    { name: "Add User", path: "/admin/add-user" },
-    { name: "View Notes", path: "/admin/view-note" },
-    { name: "Profile", path: "/admin/view-profile" },
-
-  ];
+  const menuItems =
+    session?.user?.role != "admin"
+      ? [
+          { name: "Dashboard", path: "/admin" },
+          { name: "Add Note", path: "/admin/add-note" },
+          { name: "View Notes", path: "/admin/view-note" },
+          { name: "Profile", path: "/admin/view-profile" },
+        ]
+      : [
+          { name: "Dashboard", path: "/admin" },
+          { name: "Add Note", path: "/admin/add-note" },
+          { name: "Add User", path: "/admin/add-user" },
+          { name: "View Notes", path: "/admin/view-note" },
+          { name: "Profile", path: "/admin/view-profile" },
+        ];
 
   return (
-    <aside className="w-64 bg-fuchsia-800 rounded-xl text-white ">
+    <aside className="relative w-64 bg-fuchsia-800 rounded-xl text-white">
       <div className="p-4 border-b border-gray-700">
         <p className="text-lg font-semibold">{user.name}</p>
         <p className="text-sm text-gray-400">{user.role}</p>
@@ -66,12 +75,11 @@ const AdminSidebar = () => {
       <div className="absolute bottom-12 w-full p-4">
         <button
           onClick={handleLogout}
-          className="w-20 px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700"
+          className="w-full px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700"
         >
           Logout
         </button>
       </div>
-      {/* <DialogBox title="Hello" text="This is test message" isOpen={showDialog} /> */}
     </aside>
   );
 };
