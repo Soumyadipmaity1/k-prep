@@ -20,19 +20,15 @@ const AddNoteForm: React.FC = () => {
   const [semister, setSemester] = useState<string>("");
   const [pdflink, setPdfLink] = useState<string>("");
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
   const params = useSearchParams();
-  const id = params.get("id");
-
+  const id = params.get("id")||"";
   useEffect(() => {
     // If updating a note, fetch its data and populate the form fields
     if (id) {
       const fetchNote = async () => {
         try {
           const res = await axios.get(`/api/note/view-note?id=${id}`);
-   
-          // console.log(res)
-  
           const note = res.data.notes;
           setResourceTitle(note.resourcestitle);
           setSubjectFullName(note.subjectFullname);
@@ -70,7 +66,7 @@ const AddNoteForm: React.FC = () => {
   };
 
   const validateForm = () => {
-    return (
+    const isValid = (
       resourcestitle &&
       subjectFullname &&
       subjectsortname &&
@@ -80,6 +76,12 @@ const AddNoteForm: React.FC = () => {
       semister &&
       pdflink
     );
+
+    if (!isValid) {
+      toast.error("Please fill in all fields.");
+    }
+
+    return isValid;
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -88,7 +90,6 @@ const AddNoteForm: React.FC = () => {
     setLoading(true);
 
     if (!validateForm()) {
-      alert("Please fill in all fields.");
       setIsDisable(false);
       setLoading(false);
       return;
@@ -130,9 +131,7 @@ const AddNoteForm: React.FC = () => {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success(
-          id ? "Note updated successfully" : "Note added successfully"
-        );
+        toast.success(id ? "Note updated successfully" : "Note added successfully");
         if (!id) {
           // Reset form fields after adding a new note
           setResourceTitle("");
@@ -151,7 +150,7 @@ const AddNoteForm: React.FC = () => {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.");
     }
     setIsDisable(false);
     setLoading(false);
@@ -178,9 +177,7 @@ const AddNoteForm: React.FC = () => {
             className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             placeholder="Enter Resources Title"
             value={resourcestitle}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setResourceTitle(e.target.value)
-            }
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setResourceTitle(e.target.value)}
           />
         </div>
 
@@ -195,9 +192,7 @@ const AddNoteForm: React.FC = () => {
             className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             placeholder="Enter Subject Full Name"
             value={subjectFullname}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setSubjectFullName(e.target.value)
-            }
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setSubjectFullName(e.target.value)}
           />
         </div>
 
@@ -212,9 +207,7 @@ const AddNoteForm: React.FC = () => {
             className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             placeholder="Enter Short Form"
             value={subjectsortname}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setSubjectShortName(e.target.value)
-            }
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setSubjectShortName(e.target.value)}
           />
         </div>
 
@@ -228,9 +221,7 @@ const AddNoteForm: React.FC = () => {
             title="Select Credit"
             className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             value={credit}
-            onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-              setCredit(e.target.value)
-            }
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => setCredit(e.target.value)}
           >
             <option value="">Select Credit</option>
             {creditOptions.map((creditValue, index) => (
@@ -252,9 +243,7 @@ const AddNoteForm: React.FC = () => {
             className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             placeholder="Enter Subject Code"
             value={subjectcode}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setSubjectCode(e.target.value)
-            }
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setSubjectCode(e.target.value)}
           />
         </div>
 
@@ -264,13 +253,11 @@ const AddNoteForm: React.FC = () => {
             Year:
           </label>
           <select
-            title="Select Year"
-            value={year}
             disabled={isDisable}
-            onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-              handleYearChange(e.target.value)
-            }
-            className="w-full bg-fuchsia-50 border-fuchsia-500 px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
+            title="Select Year"
+            className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
+            value={year}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => handleYearChange(e.target.value)}
           >
             <option value="">Select Year</option>
             <option value="1">1st Year</option>
@@ -287,11 +274,9 @@ const AddNoteForm: React.FC = () => {
           <select
             disabled={isDisable}
             title="Select Semester"
+            className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
             value={semister}
-            onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-              setSemester(e.target.value)
-            }
-            className="w-full bg-fuchsia-50 border-fuchsia-500 px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => setSemester(e.target.value)}
           >
             <option value="">Select Semester</option>
             {semesterOptions.map((sem, index) => (
@@ -303,39 +288,38 @@ const AddNoteForm: React.FC = () => {
         </div>
 
         {/* PDF Link */}
-        <div className="sm:col-span-2">
+        <div className="bg-fuchsia-100">
           <label className="block text-fuchsia-900 text-lg font-semibold mb-2">
             PDF Link:
           </label>
           <input
             disabled={isDisable}
-            type="url"
-            className="w-full bg-fuchsia-50 border-fuchsia-500 px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
-            placeholder="Enter Google Drive Link"
+            type="text"
+            className="w-full px-4 bg-fuchsia-50 border-fuchsia-500 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
+            placeholder="Enter PDF Link"
             value={pdflink}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setPdfLink(e.target.value)
-            }
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setPdfLink(e.target.value)}
           />
         </div>
       </div>
 
-      {/* Submit Button */}
-      <div className="text-center mt-8">
-        <button
-          disabled={isDisable}
-          type="submit"
-          className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-2 px-10 rounded-md"
-        >
-          {loading ? (
-            <ScaleLoader color="white" width={5} height={10} />
-          ) : id ? (
-            "Update Note"
-          ) : (
-            "Add Note"
-          )}
-        </button>
-      </div>
+      {error && <p className="text-red-600">{error}</p>}
+
+      <button
+        type="submit"
+        className={`mt-6 w-full py-3 rounded-lg font-bold text-white ${
+          isDisable ? "bg-fuchsia-300" : "bg-fuchsia-600 hover:bg-fuchsia-700"
+        }`}
+        disabled={isDisable}
+      >
+        {loading ? (
+          <ScaleLoader color="white" height={12} />
+        ) : id ? (
+          "Update Note"
+        ) : (
+          "Add Note"
+        )}
+      </button>
     </form>
   );
 };

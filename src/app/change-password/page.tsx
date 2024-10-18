@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { MdOutlineVisibility, MdVisibilityOff } from "react-icons/md";
 import { useSearchParams, useRouter } from "next/navigation";
 import axios from "axios";
 
-function Page() {
+function ChangePassword() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -44,7 +44,7 @@ function Page() {
         newPassword,
       });
 
-      if (response.status != 200) {
+      if (response.status !== 200) {
       } else {
         setSuccess(response.data.message);
         setTimeout(() => {
@@ -119,5 +119,13 @@ function Page() {
     </div>
   );
 }
+
+const Page = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ChangePassword />
+    </Suspense>
+  );
+};
 
 export default Page;

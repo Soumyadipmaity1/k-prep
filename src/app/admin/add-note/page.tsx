@@ -1,12 +1,12 @@
-import AddNoteForm from '@/components/AddNoteForm/AddnoteForm'
-import React from 'react'
+// import AddNoteForm from '@/components/AddNoteForm/AddnoteForm';
+import React from 'react';
 
-function AddNote() {
+const AddNote = () => {
   return (
     <div>
-        <AddNoteForm/>
+      {/* <AddNoteForm /> */} hello
     </div>
-  )
-}
+  );
+};
 
-export default AddNote
+export default AddNote;

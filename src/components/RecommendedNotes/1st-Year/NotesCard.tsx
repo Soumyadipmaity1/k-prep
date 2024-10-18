@@ -10,7 +10,6 @@ interface CardProps {
   imageSrc: string;
   description: string;
   pdfUrl: string;
-  year?: string;
 }
 
 const Card: React.FC<CardProps> = ({ title, imageSrc, description, pdfUrl }) => {
@@ -21,8 +20,7 @@ const Card: React.FC<CardProps> = ({ title, imageSrc, description, pdfUrl }) => 
   return (
     <div className="bg-recommended rounded-xl shadow-lg flex flex-col justify-center sm:p-4 p-2 w-48 sm:w-60 mx-2">
       <div className="h-48 w-full bg-gray-200 rounded-md mb-4 relative">
-        {/* Using a valid image src dynamically */}
-        {/* <Image src={imageSrc} alt={title} layout="fill" className="rounded-md" /> */}
+        <Image src={imageSrc} alt={title} layout="fill" className="rounded-md" objectFit="cover" />
       </div>
       <h2 className="sm:text-xl font-bold text-base mb-2">{title}</h2>
       <p className="text-gray-700 text-sm sm:text-base mb-4">{description}</p>
@@ -40,7 +38,7 @@ interface Note {
   subjectFullName: string;
   sortName: string;
   pdfLine: string;
-  credit:string
+  credit: string;
 }
 
 const fetchNotes = async (year: number): Promise<Note[]> => {
@@ -52,7 +50,7 @@ const fetchNotes = async (year: number): Promise<Note[]> => {
   return data.notes; 
 };
 
-const Home = ({year}:{year:number}) => {
+const Home = ({ year }: { year: number }) => {
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -61,14 +59,14 @@ const Home = ({year}:{year:number}) => {
     setLoading(true);
     setError(null);
     try {
-      const fetchedNotes = await fetchNotes(year); // Change the year if needed
+      const fetchedNotes = await fetchNotes(year);
       setNotes(fetchedNotes);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unknown error occurred");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [year]); // Ensure year is included in dependencies
 
   useEffect(() => {
     fetchAndSetNotes();
@@ -79,13 +77,13 @@ const Home = ({year}:{year:number}) => {
       <div className="bg-[#f8e9f48c] sm:h-96 sm:py-5 flex items-center">
         <main className="flex space-x-4">
           {loading && <p>Loading...</p>}
-          {/* {error && <p>{error}</p>} */}
-          {notes.length===0?"No Record":notes.slice(0,3).map((item, index) => (
+          {error && <p className="text-red-500">{error}</p>}
+          {notes.length === 0 ? "No Record" : notes.slice(0, 3).map((item, index) => (
             <Card
               key={index}
               title={item.subjectFullName}
               imageSrc="https://canto-wp-media.s3.amazonaws.com/app/uploads/2019/08/19194138/image-url-3.jpg" // Replace with actual image path if available
-              description={`${item.sortName}(credit:${item.credit})`}
+              description={`${item.sortName} (credit: ${item.credit})`}
               pdfUrl={item.pdfLine}
             />
           ))}
